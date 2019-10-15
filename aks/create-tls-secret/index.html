@@ -260,8 +260,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#geting-the-right-files" class="md-nav__link">
-    Geting the right files
+  <a href="#getting-the-right-files" class="md-nav__link">
+    Getting the right files
   </a>
   
 </li>
@@ -269,6 +269,40 @@
         <li class="md-nav__item">
   <a href="#creating-the-tls-secret-in-kubernetes" class="md-nav__link">
     Creating the TLS Secret in Kubernetes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    Additional Notes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-validate-a-key" class="md-nav__link">
+    How to validate a key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-did-my-pks-file-come-from" class="md-nav__link">
+    Where did my PKS file come from?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-get-the-client-certificate-without-the-full-ca-chain" class="md-nav__link">
+    How to get the client certificate (without the full CA chain)
   </a>
   
 </li>
@@ -293,30 +327,30 @@
                 <h1 id="how-to-create-a-tls-secret">How to Create a TLS Secret</h1>
 <p>I followed the command-line method (the first method) explained in this article <a href="https://shocksolution.com/2018/12/14/creating-kubernetes-secrets-using-tls-ssl-as-an-example/">Creating Kubernetes Secrets Using TLS/SSL as an Example</a> - i.e. rather than using the second (YAML file) method.</p>
 <p>In order to do this I needed two files in the correct format.</p>
-<p>There are multiple formats that certificate and asscoated key files can be in (they can even be combined into a single file). In order to create a Kubernetes TLS secret I needed to ascertain the right ones to use.</p>
+<p>There are multiple formats that certificate and associated key files can be in (they can even be combined into a single file). In order to create a Kubernetes TLS secret I needed to ascertain the right ones to use.</p>
 <p>I was provided with a <code>.pks</code> file and needed to work out how to generate the correct artifacts from it. All I knew from the above article was that I needed a <code>.crt</code> and a <code>.key</code> file and at first I wasn't sure what these were.</p>
 <h2 id="what-are-we-trying-to-achieve">What are we trying to achieve?</h2>
 <p>I needed obtain a TLS certificate and create a TLS Secret object in Kubernetes so that an Ingress resource could refer to the Secret in order that the certificate presented by the NGINX Ingress would look like this when visiting the associated Service in a web browser:</p>
 <p><img alt="Image" src="../media/cert-path.png?raw=true" /></p>
 <p><em>(i.e. the TLS/HTTPS certificate should include the CA chain.)</em></p>
-<h2 id="geting-the-right-files">Geting the right files</h2>
+<h2 id="getting-the-right-files">Getting the right files</h2>
 <p>To get an encrypted private key:</p>
 <blockquote>
 <p>openssl pkcs12 -in domain.pfx -nocerts -out domain.enc.key</p>
 </blockquote>
-<p>To get an unencrypted private key file</p>
+<p>To get an un-encrypted private key file</p>
 <blockquote>
 <p>openssl rsa -in domain.enc.key -outform PEM -out domain.key</p>
 </blockquote>
-<p><em><strong>Note:</strong> be sure to delete this file once uploaded to the cluster so that you don't have an unencrypted secret on your local machine</em></p>
+<p><em><strong>Note:</strong> be sure to delete this file once uploaded to the cluster so that you don't have an un-encrypted secret on your local machine</em></p>
 <p>To get the certificate file</p>
 <blockquote>
 <p>openssl pkcs12 -in domain.pfx -nodes -nokeys -nomac -out domain.crt</p>
 </blockquote>
 <p>The <strong>domain.crt</strong> file looks like this</p>
 <p><img alt="Image" src="../media/domain.crt.png?raw=true" /></p>
-<p>In my case it contains the full CA chain and so, in my case, there are three certificates each enclosed in <code>BEGIN CERTIFICATE</code> and <code>END CERTIFICATE</code> delimeters:</p>
-<pre><code>-----BEGIN CERTIFICATE-----
+<p>In my case it contains the full CA chain and so, in my case, there are three certificates each enclosed in <code>BEGIN CERTIFICATE</code> and <code>END CERTIFICATE</code> delimiters:</p>
+<pre><code class="console">-----BEGIN CERTIFICATE-----
 ################################################################
 ################################################################
 -----END CERTIFICATE-----
@@ -328,9 +362,9 @@
 <p>kubectl create secret tls tlscert --key="tls.key" --cert="tls.crt"</p>
 </blockquote>
 <hr />
-<h1 id="additional-notes">Additional Notes</h1>
-<h2 id="how-to-validate-a-key">How to validate a key</h2>
-<p><em>This works for both encrypted or unencrpyted keys</em>:</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<h3 id="how-to-validate-a-key">How to validate a key</h3>
+<p><em>This works for both encrypted or un-encrypted keys</em>:</p>
 <blockquote>
 <p>openssl rsa -check -in domain.enc.key</p>
 </blockquote>
@@ -339,7 +373,7 @@
 <p>openssl rsa -check -in domain.key</p>
 </blockquote>
 <p>You should see the message 'RSA key ok':</p>
-<pre><code>$ openssl rsa -check -in domain.enc.key
+<pre><code class="console">$ openssl rsa -check -in domain.enc.key
 Enter pass phrase for domain.enc.pem:
 RSA key ok
 writing RSA key
@@ -348,7 +382,7 @@ writing RSA key
 ################################################################
 </code></pre>
 
-<h2 id="where-did-my-pks-file-come-from">Where did my PKS file come from?</h2>
+<h3 id="where-did-my-pks-file-come-from">Where did my PKS file come from?</h3>
 <p>I was provided with a <code>.pks</code> ( <code>PKCS#12</code> ) file which had been created with the following command</p>
 <blockquote>
 <p>openssl pkcs12 -export -out domain.pfx -inkey domain.rsa -in domain.cer -certfile CAbundle.txt</p>
@@ -356,7 +390,7 @@ writing RSA key
 <p>Where:</p>
 <ul>
 <li>domain.cer is the client certificate (i.e. without the Certification Authority (CA) chain )</li>
-<li>domain.rsa is an unencrypted version of the private key</li>
+<li>domain.rsa is an un-encrypted version of the private key</li>
 <li>CAbundle.txt contains the CA certificates to append to create the CA chain</li>
 </ul>
 <p><strong>domain.cer</strong> looks like this</p>
