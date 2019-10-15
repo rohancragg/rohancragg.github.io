@@ -31,18 +31,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
-        <title>What I learned today (@rohancragg)</title>
+        <title>How to Create a TLS Secret - What I learned today (@rohancragg)</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -51,7 +51,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -60,7 +60,7 @@
         <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -83,7 +83,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#home" tabindex="1" class="md-skip">
+      <a href="#how-to-create-a-tls-secret" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -92,7 +92,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="What I learned today (@rohancragg)" class="md-header-nav__button md-logo">
+        <a href="../.." title="What I learned today (@rohancragg)" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -109,7 +109,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                How to Create a TLS Secret
               
             </span>
           
@@ -162,7 +162,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="." title="What I learned today (@rohancragg)" class="md-nav__button md-logo">
+    <a href="../.." title="What I learned today (@rohancragg)" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -176,49 +176,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Home
-      </label>
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#rohancraggs-personal-docs" class="md-nav__link">
-    rohancragg's personal docs
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -228,7 +190,7 @@
 
 
   <li class="md-nav__item">
-    <a href="about" title="About Me" class="md-nav__link">
+    <a href="../../about" title="About Me" class="md-nav__link">
       About Me
     </a>
   </li>
@@ -291,8 +253,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rohancraggs-personal-docs" class="md-nav__link">
-    rohancragg's personal docs
+  <a href="#what-are-we-trying-to-achieve" class="md-nav__link">
+    What are we trying to achieve?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geting-the-right-files" class="md-nav__link">
+    Geting the right files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-the-tls-secret-in-kubernetes" class="md-nav__link">
+    Creating the TLS Secret in Kubernetes
   </a>
   
 </li>
@@ -314,12 +290,88 @@
               
                 
                 
-                <h1 id="home">Home</h1>
-<h2 id="rohancraggs-personal-docs">rohancragg's personal docs</h2>
-<p>This repository contains hopelessly hopeful drafts of blog articles and other bobbins and gubbins I want to make sure I don't forget.</p>
-<p>One day I'll maybe even host these at <a href="https://www.rohancragg.co.uk">https://www.rohancragg.co.uk</a> - stranger things have happened ;-)</p>
+                <h1 id="how-to-create-a-tls-secret">How to Create a TLS Secret</h1>
+<p>I followed the command-line method (the first method) explained in this article <a href="https://shocksolution.com/2018/12/14/creating-kubernetes-secrets-using-tls-ssl-as-an-example/">Creating Kubernetes Secrets Using TLS/SSL as an Example</a> - i.e. rather than using the second (YAML file) method.</p>
+<p>In order to do this I needed two files in the correct format.</p>
+<p>There are multiple formats that certificate and asscoated key files can be in (they can even be combined into a single file). In order to create a Kubernetes TLS secret I needed to ascertain the right ones to use.</p>
+<p>I was provided with a <code>.pks</code> file and needed to work out how to generate the correct artifacts from it. All I knew from the above article was that I needed a <code>.crt</code> and a <code>.key</code> file and at first I wasn't sure what these were.</p>
+<h2 id="what-are-we-trying-to-achieve">What are we trying to achieve?</h2>
+<p>I needed obtain a TLS certificate and create a TLS Secret object in Kubernetes so that an Ingress resource could refer to the Secret in order that the certificate presented by the NGINX Ingress would look like this when visiting the associated Service in a web browser:</p>
+<p><img alt="Image" src="../media/cert-path.png?raw=true" /></p>
+<p><em>(i.e. the TLS/HTTPS certificate should include the CA chain.)</em></p>
+<h2 id="geting-the-right-files">Geting the right files</h2>
+<p>To get an encrypted private key:</p>
+<blockquote>
+<p>openssl pkcs12 -in domain.pfx -nocerts -out domain.enc.key</p>
+</blockquote>
+<p>To get an unencrypted private key file</p>
+<blockquote>
+<p>openssl rsa -in domain.enc.key -outform PEM -out domain.key</p>
+</blockquote>
+<p><em><strong>Note:</strong> be sure to delete this file once uploaded to the cluster so that you don't have an unencrypted secret on your local machine</em></p>
+<p>To get the certificate file</p>
+<blockquote>
+<p>openssl pkcs12 -in domain.pfx -nodes -nokeys -nomac -out domain.crt</p>
+</blockquote>
+<p>The <strong>domain.crt</strong> file looks like this</p>
+<p><img alt="Image" src="../media/domain.crt.png?raw=true" /></p>
+<p>In my case it contains the full CA chain and so, in my case, there are three certificates each enclosed in <code>BEGIN CERTIFICATE</code> and <code>END CERTIFICATE</code> delimeters:</p>
+<pre><code>-----BEGIN CERTIFICATE-----
+################################################################
+################################################################
+-----END CERTIFICATE-----
+</code></pre>
+
+<h2 id="creating-the-tls-secret-in-kubernetes">Creating the TLS Secret in Kubernetes</h2>
+<p>Create Kubernetes TLS Secret:</p>
+<blockquote>
+<p>kubectl create secret tls tlscert --key="tls.key" --cert="tls.crt"</p>
+</blockquote>
 <hr />
-<p>Created with <a href="https://www.mkdocs.org/">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material theme by squidfunk</a></p>
+<h1 id="additional-notes">Additional Notes</h1>
+<h2 id="how-to-validate-a-key">How to validate a key</h2>
+<p><em>This works for both encrypted or unencrpyted keys</em>:</p>
+<blockquote>
+<p>openssl rsa -check -in domain.enc.key</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>openssl rsa -check -in domain.key</p>
+</blockquote>
+<p>You should see the message 'RSA key ok':</p>
+<pre><code>$ openssl rsa -check -in domain.enc.key
+Enter pass phrase for domain.enc.pem:
+RSA key ok
+writing RSA key
+-----BEGIN RSA PRIVATE KEY-----
+################################################################
+################################################################
+</code></pre>
+
+<h2 id="where-did-my-pks-file-come-from">Where did my PKS file come from?</h2>
+<p>I was provided with a <code>.pks</code> ( <code>PKCS#12</code> ) file which had been created with the following command</p>
+<blockquote>
+<p>openssl pkcs12 -export -out domain.pfx -inkey domain.rsa -in domain.cer -certfile CAbundle.txt</p>
+</blockquote>
+<p>Where:</p>
+<ul>
+<li>domain.cer is the client certificate (i.e. without the Certification Authority (CA) chain )</li>
+<li>domain.rsa is an unencrypted version of the private key</li>
+<li>CAbundle.txt contains the CA certificates to append to create the CA chain</li>
+</ul>
+<p><strong>domain.cer</strong> looks like this</p>
+<p><img alt="Image" src="../media/domain.cer.png?raw=true" /></p>
+<p>As you can see if contains just a single certificate</p>
+<p><strong>domain.rsa</strong> looks like this</p>
+<p><img alt="Image" src="../media/domain.rsa.png?raw=true" /></p>
+<h2 id="how-to-get-the-client-certificate-without-the-full-ca-chain">How to get the client certificate (without the full CA chain)</h2>
+<blockquote>
+<p>openssl pkcs12 -in domain.pfx -clcerts -nokeys -out domain.cer</p>
+</blockquote>
+<hr />
+<p>Some of the steps in this article are based on <a href="https://www.markbrilman.nl/2011/08/howto-convert-a-pfx-to-a-seperate-key-crt-file/">How to convert a PFX to a seperate .key/.crt file</a> - by Mark Brilman</p>
+<p>I also referred to the <a href="https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html">OpenSSL PKCS12 man pages</a></p>
+<p>And to <a href="https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs#convert-certificate-formats">OpenSSL Essentials: Working with SSL Certificates, Private Keys and CSRs</a></p>
                 
                   
                 
@@ -354,9 +406,9 @@
       
     </div>
     
-      <script src="assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
     
   </body>
