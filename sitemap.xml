@@ -16,6 +16,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://rohancragg.github.io/aks/domains/</loc>
+     <lastmod>2020-02-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://rohancragg.github.io/aks/create-tls-secret/</loc>
      <lastmod>2020-02-04</lastmod>
      <changefreq>daily</changefreq>
