@@ -32,7 +32,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
     
     
       
@@ -40,7 +40,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -51,12 +51,12 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700%7CUbuntu+Mono&display=fallback">
         <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
@@ -200,19 +200,55 @@
       
       
 
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Tools & Techniques
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Tools & Techniques
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../misc/scoop/" title="Scoop & Co" class="md-nav__link">
+      Scoop & Co
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
-    <label class="md-nav__link" for="nav-3">
-      AKS
+    <label class="md-nav__link" for="nav-4">
+      Kubernetes
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        AKS
+      <label class="md-nav__title" for="nav-4">
+        Kubernetes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -438,11 +474,12 @@
 <p>The <strong>domain.crt</strong> file looks like this</p>
 <p><img alt="Image" src="../media/domain.crt.png?raw=true" /></p>
 <p>In my case it contains the full CA chain and so, in my case, there are three certificates each enclosed in <code>BEGIN CERTIFICATE</code> and <code>END CERTIFICATE</code> delimiters:</p>
-<pre><code class="console">-----BEGIN CERTIFICATE-----
-################################################################
-################################################################
------END CERTIFICATE-----
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="go">-----BEGIN CERTIFICATE-----</span>
+<span class="gp">#</span><span class="c1">###############################################################</span>
+<span class="gp">#</span><span class="c1">###############################################################</span>
+<span class="go">-----END CERTIFICATE-----</span>
+</pre></div>
+
 
 <h2 id="creating-the-tls-secret-in-kubernetes">Creating the TLS Secret in Kubernetes</h2>
 <p>Create Kubernetes TLS Secret:</p>
@@ -461,14 +498,15 @@
 <p>openssl rsa -check -in domain.key</p>
 </blockquote>
 <p>You should see the message 'RSA key ok':</p>
-<pre><code class="console">$ openssl rsa -check -in domain.enc.key
-Enter pass phrase for domain.enc.pem:
-RSA key ok
-writing RSA key
------BEGIN RSA PRIVATE KEY-----
-################################################################
-################################################################
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> openssl rsa -check -in domain.enc.key
+<span class="go">Enter pass phrase for domain.enc.pem:</span>
+<span class="go">RSA key ok</span>
+<span class="go">writing RSA key</span>
+<span class="go">-----BEGIN RSA PRIVATE KEY-----</span>
+<span class="gp">#</span><span class="c1">###############################################################</span>
+<span class="gp">#</span><span class="c1">###############################################################</span>
+</pre></div>
+
 
 <h3 id="where-did-my-pks-file-come-from">Where did my PKS file come from?</h3>
 <p>I was provided with a <code>.pks</code> ( <code>PKCS#12</code> ) file which had been created with the following command</p>
@@ -497,6 +535,7 @@ writing RSA key
                 
                   
                 
+                
               
               
                 
@@ -514,7 +553,7 @@ writing RSA key
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../about/" title="About Me" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../misc/scoop/" title="Scoop & Co" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -523,7 +562,7 @@ writing RSA key
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                About Me
+                Scoop & Co
               </span>
             </div>
           </a>
@@ -549,7 +588,7 @@ writing RSA key
       
     </div>
     
-      <script src="../../assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../../assets/javascripts/application.808e90bb.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
