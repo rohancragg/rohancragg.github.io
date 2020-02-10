@@ -511,7 +511,7 @@
                 
                 
                 <h1 id="clusters-of-domains-designing-domains-and-dns-for-aks">Clusters of Domains - designing domains and DNS for AKS<a class="headerlink" href="#clusters-of-domains-designing-domains-and-dns-for-aks" title="Permanent link">&para;</a></h1>
-<p>While the [documentation on <code>Azure DNS</code>] (https://docs.microsoft.com/en-us/azure/dns/) (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do it, but not when or why.</p>
+<p>While the <a href="https://docs.microsoft.com/en-us/azure/dns/">documentation on <code>Azure DNS</code></a> (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do it, but not when or why.</p>
 <p>I was finding it initially difficult synthesise and apply the pieces of information and there was a lack of something to place it all into a real-world solution-design context.</p>
 <p>For example, how should I expose a suite of web applications or microservices and their APIs to the public internet whilst supporting a 'route to live' set of environments into which to deploy these artefacts so that they can be tested while they are under development.</p>
 <p>In other words how can I efficiently use domain names to support Development, Testing, and Staging Environments? Do I need a separate domain name for each Environment? Do I need to have a separate Kubernetes cluster for each or can I combine domain names and one or more clusters in any combination?</p>
@@ -646,12 +646,35 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 <h2 id="hierarchy-to-the-rescue">Hierarchy to the rescue!<a class="headerlink" href="#hierarchy-to-the-rescue" title="Permanent link">&para;</a></h2>
 <p>This image gave me an idea!:</p>
 <p><img alt="Image" src="../media/dns-zone-alias.png?raw=true" /></p>
-<p>from: https://docs.microsoft.com/en-us/azure/dns/dns-domain-delegation</p>
-<p>Why not have a hierachy of DNS zone resources, where a parent one delegates to one or more child Zones so that in my multi-environment model, each DNS Zone would be an environemnt (<code>dev.contosoapps.com</code>, <code>staging.contosoapps.com</code>) and the parent is the production environment (<code>contosoapps.com</code>)</p>
+<p>from: <a href="https://docs.microsoft.com/en-us/azure/dns/dns-domain-delegation">https://docs.microsoft.com/en-us/azure/dns/dns-domain-delegation</a></p>
+<p>Why not have a hierachy of DNS zone resources?!</p>
+<p>In a hierarchy of DNS Zone resources a 'parent' one delegates to one or more 'child' DNS Zones. This would enable us to implement my multi-environment model whereby each DNS Zone would be an environment (<code>dev.contosoapps.com</code>, <code>staging.contosoapps.com</code>) and the parent is the production environment (<code>contosoapps.com</code>)</p>
+<p>I actually tried this out before I'd identified the area of the documentation that explains how to do it: <a href="https://docs.microsoft.com/en-us/azure/dns/delegate-subdomain">Delegate an Azure DNS subdomain</a></p>
+<p>Once I'd got the idea of DNS zones referencing each other somehow, I went hunting for examples of what the Azure CLI commands for doing this might look like. Whilst searching for <code>az network dns zone</code> I came across a tiny snippet of code here: <a href="https://jwendl.net/code-notes/azure/network/">https://jwendl.net/code-notes/azure/network/</a> which hinted at what I needed to do, so I went ahead and tried it.</p>
+<p>My set of commands to acheive this in Azure CLI \
+<em>this is in PowerShell rather then Bash incidentally</em>:</p>
+<p>```powershell
+$dnsRgName='RG-DNS-Zones'
+$domainName='contosoapps.xyz'
+$dnsZoneId=$(az network dns zone create -g $dnsRgName -n $domainName --query id -o tsv)</p>
+<p>$domainNameSub='dev.contosoapps.xyz'
+$dnsZoneIdSub=$(az network dns zone create -g $dnsRgName -n $domainNameSub --query id -o tsv)</p>
+<h1 id="list-name-servers-for-dev-subdomain-zone">list name servers for dev (subdomain) zone<a class="headerlink" href="#list-name-servers-for-dev-subdomain-zone" title="Permanent link">&para;</a></h1>
+<p>$ns0=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[0]" -o tsv)
+$ns1=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[1]" -o tsv)
+$ns2=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[2]" -o tsv)
+$ns3=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[3]" -o tsv)</p>
+<h1 id="add-subdomain-ns-records-to-apex-zone">add subdomain NS records to apex zone<a class="headerlink" href="#add-subdomain-ns-records-to-apex-zone" title="Permanent link">&para;</a></h1>
+<p>az network dns record-set ns create -g $dnsRgName -z $domainName -n 'dev'
+az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns0
+az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns1
+az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns2
+az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns3
+````</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In Progress
-The plan is to flesh this out a bit more as I keep trying things, but a wee spoiler is that it's basically inspired by a tiny snippet of code I found here: https://jwendl.net/code-notes/azure/network/</p>
+The plan is to flesh this out a bit more as I keep trying things.</p>
 </div>
                 
                   
