@@ -331,9 +331,38 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Clusters and Domains
+      </label>
+    
     <a href="./" title="Clusters and Domains" class="md-nav__link md-nav__link--active">
       Clusters and Domains
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#if-at-first-you-dont-succeed-play" class="md-nav__link">
+    If at first you don't succeed - Play!
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -372,6 +401,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#if-at-first-you-dont-succeed-play" class="md-nav__link">
+    If at first you don't succeed - Play!
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -386,10 +431,89 @@
                 
                 
                 <h1 id="clusters-of-domains-designing-domains-and-dns-for-aks">Clusters of Domains - designing domains and DNS for AKS<a class="headerlink" href="#clusters-of-domains-designing-domains-and-dns-for-aks" title="Permanent link">&para;</a></h1>
-<p>This page outlines what I've discovered to date about how to combine a Domain Name delegation, and <code>Azure DNS</code> service to provide a domain name for AKS cluster Ingress</p>
+<p>While the [documentation on <code>Azure DNS</code>] (https://docs.microsoft.com/en-us/azure/dns/) (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do it.</p>
+<p>I was finding it initially difficult synthesise and apply the pieces of information and there was a lack of something to place it all into a real-world solution-design context.</p>
+<p>Initially I felt like I was going round in circles simply trying to get a design to occur to me by simply reading the documentation.</p>
+<p>The break-through came when starting to implement something (I simply didnt know where I was going before I set off - no compass, no map). I registered a cheap domain I could use for testing for sake of this article I'll use the name <code>contosoapps.xyz</code>).</p>
+<p>For example, how should I use Zones and records in combination with Kubernetes Ingress Controllers and Resources to expose a suite of web applications or microservices and their APIs to the public internet whilst supporting a 'route to live' set of environments into which to deploy these artefacts so that they can be tested while they are under development.</p>
+<p>In other words how can I efficiently use domain names to support Develeopment, Testing, and Staging Environments? Do I need a separate domain name for each Environment? Do I need to have a separate Kubernetes cluster for each or can I combine domain names and one or more clusters in any combination?</p>
+<p>I hope to answer the above questions.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Draft - the plan is to flesh this out a bit more: https://jwendl.net/code-notes/azure/network/</p>
+<p>While my original design conundrum arose in how to use a domain name with one or more AKS clusters, this article will contain information relavant to using domain names with Azure Resources generally</p>
+</div>
+<h2 id="if-at-first-you-dont-succeed-play">If at first you don't succeed - Play!<a class="headerlink" href="#if-at-first-you-dont-succeed-play" title="Permanent link">&para;</a></h2>
+<p>The journey began while I was trying to grok the <code>external-dns</code> project. This is can be installed into a cluster and it watches deployments for any that require DNS records to be created or updated and it manages records in an associated Azure DNS Zone resource.</p>
+<p>Since I didn't have a custom domain name I could use I attempted to use the Azure-assigned fully qualified domain name (FQDN). Any AKS cluster into which a Service of type <code>LoadBalancer</code> has been deployed will have a Public IP resource deployed into the cluster-managed Resource Group. Any Azure Public IP (PIP) resource can optionally have a DNS name label applied which will then mean that this address will resolve to the IP address.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The documentation states it best:
+<em>"You can specify a DNS domain name label for a public IP resource, which creates a mapping for domainnamelabel.location.cloudapp.azure.com to the public IP address in the Azure-managed DNS servers"</em> \
+from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-ip-addresses-overview-arm">IP address types and allocation methods in Azure &gt; DNS hostname resolution</a></p>
+</div>
+<p>So, in my case, given that adding a name label of <code>contosoapps</code> to my PIP I wondered if I could use <code>external-dns</code> to manage records for Ingess resources in my cluster, where the FQDN is therefore <code>contosoapps.westeurope.cloudapp.azure.com</code>.</p>
+<p>The <a href="https://docs.microsoft.com/en-us/azure/aks/http-application-routing">Microsoft documentation</a> covering <code>externals-dns</code> only applies to a cluster where the HTTP application routing add-on has been enabled and given that this add-on is not recommended for production use I wanted to avoiding this add-on.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The HTTP application routing add-on automatically creates a DNS Zone for you and creates two controllers inside the cluster (an Ingress controller and External-DNS controller) and I wanted to understand how to deploy and manage these components properly without it happening 'auto-magically'!</p>
+</div>
+<p>Eventually I was able to piece together the elements of a solution from <a href="https://github.com/JasonvanBrackel/kubernetes-external-dns-in-rancher">this page</a> (albeit not using Rancher in my case).</p>
+<p>Once this was working I was able to host multiple services, each with an Ingress based on the FQDN. So, for example, the <code>demo-nginx</code> app could be reached with the URL <code>demo-nqinx.contosoapps.westeurope.cloudapp.azure.com</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Application Name</th>
+<th>FQDN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>demo-nginx</td>
+<td>demo-nqinx.contosoapps.westeurope.cloudapp.azure.com</td>
+</tr>
+<tr>
+<td>demo-aspdotnet</td>
+<td>demo-aspdotnet.contosoapps.westeurope.cloudapp.azure.com</td>
+</tr>
+</tbody>
+</table>
+<p>But what if I also want to support multiple deployment environments?</p>
+<table>
+<thead>
+<tr>
+<th>Application Name</th>
+<th>Environment</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>demo-nginx</td>
+<td>Development</td>
+<td><em>demo-nqinx.<strong>dev</strong>.contosoapps.westeurope.cloudapp.azure.com</em>*</td>
+</tr>
+<tr>
+<td>demo-nginx</td>
+<td>Staging</td>
+<td><em>demo-nqinx.<strong>test</strong>.contosoapps.westeurope.cloudapp.azure.com</em>*</td>
+</tr>
+<tr>
+<td>demo-nginx</td>
+<td>Production</td>
+<td>demo-nqinx<span></span>.contosoapps.westeurope.cloudapp.azure.com</td>
+</tr>
+</tbody>
+</table>
+<p>Unfortunately those URLs marked with * indicate that we cannot do this. Possible variations of the above that I considered were:</p>
+<ul>
+<li>demo-nqinx.<strong>dev</strong>...</li>
+<li><strong>dev</strong>.demo-nqinx...</li>
+<li><strong>dev</strong>-demo-nqinx...</li>
+</ul>
+<p>I could not find this documented anywhere but it seems that name labels on Public IP Addresses only support a single label and so we cannot use FQDNS with aything other than 6-part names. In the first two examples above I'm trying to use 7-part names and in the third example I would need more than one name label on the IP address - one for each environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In Progress - the plan is to flesh this out a bit more: https://jwendl.net/code-notes/azure/network/</p>
 </div>
                 
                   
