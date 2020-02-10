@@ -653,24 +653,28 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 <p>Once I'd got the idea of DNS zones referencing each other somehow, I went hunting for examples of what the Azure CLI commands for doing this might look like. Whilst searching for <code>az network dns zone</code> I came across a tiny snippet of code here: <a href="https://jwendl.net/code-notes/azure/network/">https://jwendl.net/code-notes/azure/network/</a> which hinted at what I needed to do, so I went ahead and tried it.</p>
 <p>My set of commands to acheive this in Azure CLI \
 <em>this is in PowerShell rather then Bash incidentally</em>:</p>
-<p>```powershell
-$dnsRgName='RG-DNS-Zones'
-$domainName='contosoapps.xyz'
-$dnsZoneId=$(az network dns zone create -g $dnsRgName -n $domainName --query id -o tsv)</p>
-<p>$domainNameSub='dev.contosoapps.xyz'
-$dnsZoneIdSub=$(az network dns zone create -g $dnsRgName -n $domainNameSub --query id -o tsv)</p>
-<h1 id="list-name-servers-for-dev-subdomain-zone">list name servers for dev (subdomain) zone<a class="headerlink" href="#list-name-servers-for-dev-subdomain-zone" title="Permanent link">&para;</a></h1>
-<p>$ns0=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[0]" -o tsv)
-$ns1=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[1]" -o tsv)
-$ns2=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[2]" -o tsv)
-$ns3=$(az network dns record-set ns show --resource-group $dnsRgName --zone-name $domainNameSub --name '@' --query "nsRecords[3]" -o tsv)</p>
-<h1 id="add-subdomain-ns-records-to-apex-zone">add subdomain NS records to apex zone<a class="headerlink" href="#add-subdomain-ns-records-to-apex-zone" title="Permanent link">&para;</a></h1>
-<p>az network dns record-set ns create -g $dnsRgName -z $domainName -n 'dev'
-az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns0
-az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns1
-az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns2
-az network dns record-set ns add-record -g $dnsRgName -z $domainName --record-set-name 'dev' --nsdname $ns3
-````</p>
+<div class="codehilite"><pre><span></span><span class="nv">$dnsRgName</span><span class="p">=</span><span class="s1">&#39;RG-DNS-Zones&#39;</span>
+<span class="nv">$domainName</span><span class="p">=</span><span class="s1">&#39;contosoapps.xyz&#39;</span>
+<span class="nv">$dnsZoneId</span><span class="p">=$(</span><span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">zone</span> <span class="n">create</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-n</span> <span class="nv">$domainName</span> <span class="p">-</span><span class="n">-query</span> <span class="n">id</span> <span class="n">-o</span> <span class="n">tsv</span><span class="p">)</span>
+
+<span class="nv">$domainNameSub</span><span class="p">=</span><span class="s1">&#39;dev.contosoapps.xyz&#39;</span>
+<span class="nv">$dnsZoneIdSub</span><span class="p">=$(</span><span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">zone</span> <span class="n">create</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-n</span> <span class="nv">$domainNameSub</span> <span class="p">-</span><span class="n">-query</span> <span class="n">id</span> <span class="n">-o</span> <span class="n">tsv</span><span class="p">)</span>
+
+<span class="c"># list name servers for dev (subdomain) zone</span>
+<span class="nv">$ns0</span><span class="p">=$(</span><span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="n">show</span> <span class="p">-</span><span class="n">-resource-group</span> <span class="nv">$dnsRgName</span> <span class="p">-</span><span class="n">-zone-name</span> <span class="nv">$domainNameSub</span> <span class="p">-</span><span class="n">-name</span> <span class="s1">&#39;@&#39;</span> <span class="p">-</span><span class="n">-query</span> <span class="s2">&quot;nsRecords[0]&quot;</span> <span class="n">-o</span> <span class="n">tsv</span><span class="p">)</span>
+<span class="nv">$ns1</span><span class="p">=$(</span><span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="n">show</span> <span class="p">-</span><span class="n">-resource-group</span> <span class="nv">$dnsRgName</span> <span class="p">-</span><span class="n">-zone-name</span> <span class="nv">$domainNameSub</span> <span class="p">-</span><span class="n">-name</span> <span class="s1">&#39;@&#39;</span> <span class="p">-</span><span class="n">-query</span> <span class="s2">&quot;nsRecords[1]&quot;</span> <span class="n">-o</span> <span class="n">tsv</span><span class="p">)</span>
+<span class="nv">$ns2</span><span class="p">=$(</span><span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="n">show</span> <span class="p">-</span><span class="n">-resource-group</span> <span class="nv">$dnsRgName</span> <span class="p">-</span><span class="n">-zone-name</span> <span class="nv">$domainNameSub</span> <span class="p">-</span><span class="n">-name</span> <span class="s1">&#39;@&#39;</span> <span class="p">-</span><span class="n">-query</span> <span class="s2">&quot;nsRecords[2]&quot;</span> <span class="n">-o</span> <span class="n">tsv</span><span class="p">)</span>
+<span class="nv">$ns3</span><span class="p">=$(</span><span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="n">show</span> <span class="p">-</span><span class="n">-resource-group</span> <span class="nv">$dnsRgName</span> <span class="p">-</span><span class="n">-zone-name</span> <span class="nv">$domainNameSub</span> <span class="p">-</span><span class="n">-name</span> <span class="s1">&#39;@&#39;</span> <span class="p">-</span><span class="n">-query</span> <span class="s2">&quot;nsRecords[3]&quot;</span> <span class="n">-o</span> <span class="n">tsv</span><span class="p">)</span>
+
+<span class="c"># add subdomain NS records to apex zone</span>
+<span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="n">create</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-z</span> <span class="nv">$domainName</span> <span class="n">-n</span> <span class="s1">&#39;dev&#39;</span>
+<span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="nb">add-record</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-z</span> <span class="nv">$domainName</span> <span class="p">-</span><span class="n">-record-set-name</span> <span class="s1">&#39;dev&#39;</span> <span class="p">-</span><span class="n">-nsdname</span> <span class="nv">$ns0</span>
+<span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="nb">add-record</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-z</span> <span class="nv">$domainName</span> <span class="p">-</span><span class="n">-record-set-name</span> <span class="s1">&#39;dev&#39;</span> <span class="p">-</span><span class="n">-nsdname</span> <span class="nv">$ns1</span>
+<span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="nb">add-record</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-z</span> <span class="nv">$domainName</span> <span class="p">-</span><span class="n">-record-set-name</span> <span class="s1">&#39;dev&#39;</span> <span class="p">-</span><span class="n">-nsdname</span> <span class="nv">$ns2</span>
+<span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="nb">add-record</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-z</span> <span class="nv">$domainName</span> <span class="p">-</span><span class="n">-record-set-name</span> <span class="s1">&#39;dev&#39;</span> <span class="p">-</span><span class="n">-nsdname</span> <span class="nv">$ns3</span>
+</pre></div>
+
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In Progress
