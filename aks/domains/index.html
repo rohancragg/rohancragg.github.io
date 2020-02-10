@@ -524,12 +524,12 @@
 <p>I knew I wanted to build a solution that would combine <code>cert-manager</code> and <code>external-dns</code> controllers in each Kubernetes cluster so that applications could be deployed without the Application Developers needing to manage either DNS records nor handling certificates or key pairs in deployment pipelines, thus also avoiding any risk of inadvertantly exposing secrets and certificates in source code repositories. My problem was that none of the documentation I could find brought all of these pieces together in a multi-environment solution. I could get pieces working in isolation but how to bring them all together?</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The <code>external-dns</code> project
+<p><strong>The <code>external-dns</code> project</strong> \
 This can be installed into a cluster and it watches deployments for any that require DNS records to be created or updated and it manages records in an associated Azure DNS Zone resource.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The <code>cert-manager</code>project
+<p><strong>The <code>cert-manager</code>project</strong> \
 This is a native Kubernetes certificate management controller which ca be used to issue certificates automatically. It ensures </p>
 </div>
 <p>Initially I felt like I was going round in circles simply trying to get a 'multi-environment' design to occur to me by simply reading the documentation for AKS and for these other open-source components.</p>
@@ -638,12 +638,16 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 <p>The only <a href="https://docs.microsoft.com/en-us/azure/aks/http-application-routing">Microsoft documentation</a> I could find covering <code>externals-dns</code> only applies to a cluster where the HTTP application routing add-on has been enabled and given that this add-on is not recommended for production use I wanted to avoiding this add-on.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The HTTP application routing add-on automatically creates a DNS Zone for you and creates two controllers inside the cluster (an Ingress controller and External-DNS controller) and I wanted to understand how to deploy and manage these components properly without it happening 'auto-magically'!</p>
+<p><strong>The HTTP application routing add-on</strong> automatically creates a DNS Zone for you and creates two controllers inside the cluster (an Ingress controller and External-DNS controller) and I wanted to understand how to deploy and manage these components properly without it happening 'auto-magically'!</p>
 </div>
 <p>Eventually I was able to piece together the elements of a solution for using <code>external-dns</code> in AKS from <a href="https://github.com/JasonvanBrackel/kubernetes-external-dns-in-rancher">this page</a> (albeit not using Rancher in my case).</p>
 <p>Again this provided a working demonstration of <code>external-dns</code> on it's own but not in a multi-environment deployment context.</p>
 <p>My problem is that with <code>external-dns</code> the DNS Zone resource represents the first <em>two parts</em> of my domain name. In this example, my Apex is <code>contosoapp.com</code> which has two parts, and <code>external-dns</code> controller would only manage <em>part three</em> by adding A-records such as <code>dev-app</code> and <code>staging-app</code>) but we'll be limited to three-part names.</p>
 <h2 id="hierarchy-to-the-rescue">Hierarchy to the rescue!<a class="headerlink" href="#hierarchy-to-the-rescue" title="Permanent link">&para;</a></h2>
+<p>This image gave me an idea!:</p>
+<p><img alt="Image" src="../media/dns-zone-alias.png?raw=true" /></p>
+<p>from: https://docs.microsoft.com/en-us/azure/dns/dns-domain-delegation</p>
+<p>Why not have a hierachy of DNS zone resources, where a parent one delegates to one or more child Zones so that in my multi-environment model, each DNS Zone would be an environemnt (<code>dev.contosoapps.com</code>, <code>staging.contosoapps.com</code>) and the parent is the production environment (<code>contosoapps.com</code>)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In Progress
