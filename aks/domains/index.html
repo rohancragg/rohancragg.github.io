@@ -651,7 +651,7 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 <p>In a hierarchy of DNS Zone resources a 'parent' one delegates to one or more 'child' DNS Zones. This would enable us to implement my multi-environment model whereby each DNS Zone would be an environment (<code>dev.contosoapps.com</code>, <code>staging.contosoapps.com</code>) and the parent is the production environment (<code>contosoapps.com</code>)</p>
 <p>I actually tried this out before I'd identified the area of the documentation that explains how to do it: <a href="https://docs.microsoft.com/en-us/azure/dns/delegate-subdomain">Delegate an Azure DNS subdomain</a></p>
 <p>Once I'd got the idea of DNS zones referencing each other somehow, I went hunting for examples of what the Azure CLI commands for doing this might look like. Whilst searching for <code>az network dns zone</code> I came across a tiny snippet of code here: <a href="https://jwendl.net/code-notes/azure/network/">https://jwendl.net/code-notes/azure/network/</a> which hinted at what I needed to do, so I went ahead and tried it.</p>
-<p>My set of commands to acheive this in Azure CLI \
+<p>My set of commands to acheive this in Azure CLI <br>
 <em>this is in PowerShell rather then Bash incidentally</em>:</p>
 <div class="codehilite"><pre><span></span><span class="nv">$dnsRgName</span><span class="p">=</span><span class="s1">&#39;RG-DNS-Zones&#39;</span>
 <span class="nv">$domainName</span><span class="p">=</span><span class="s1">&#39;contosoapps.xyz&#39;</span>
@@ -675,6 +675,14 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 </pre></div>
 
 
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong> Delegating my custom domain </strong>
+As described in the documentation <a href="https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns#delegate-the-domain">Tutorial: Host your domain in Azure DNS</a>: \
+    <em>"In the registrar's DNS management page, edit the NS records and replace the NS records with the Azure DNS name servers."</em></p>
+</div>
+<p>In my case this was with https://123-reg.co.uk and looks like this:</p>
+<p><img alt="Image" src="../media/registrar-update-nameservers.png?raw=true" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In Progress
