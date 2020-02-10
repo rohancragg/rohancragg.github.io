@@ -354,6 +354,46 @@
     If at first you don't succeed - Play!
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trying-out-cert-manager" class="md-nav__link">
+    Trying out cert-manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-in-doubt-puchase-a-custom-domain-name" class="md-nav__link">
+    When in doubt - Puchase a Custom Domain Name!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trying-out-external-dns" class="md-nav__link">
+    Trying out external-dns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchy-to-the-rescue" class="md-nav__link">
+    Hierarchy to the rescue!
+  </a>
+  
 </li>
       
       
@@ -409,6 +449,46 @@
     If at first you don't succeed - Play!
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trying-out-cert-manager" class="md-nav__link">
+    Trying out cert-manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-in-doubt-puchase-a-custom-domain-name" class="md-nav__link">
+    When in doubt - Puchase a Custom Domain Name!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trying-out-external-dns" class="md-nav__link">
+    Trying out external-dns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hierarchy-to-the-rescue" class="md-nav__link">
+    Hierarchy to the rescue!
+  </a>
+  
 </li>
       
       
@@ -431,33 +511,38 @@
                 
                 
                 <h1 id="clusters-of-domains-designing-domains-and-dns-for-aks">Clusters of Domains - designing domains and DNS for AKS<a class="headerlink" href="#clusters-of-domains-designing-domains-and-dns-for-aks" title="Permanent link">&para;</a></h1>
-<p>While the [documentation on <code>Azure DNS</code>] (https://docs.microsoft.com/en-us/azure/dns/) (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do it.</p>
+<p>While the [documentation on <code>Azure DNS</code>] (https://docs.microsoft.com/en-us/azure/dns/) (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do it, but not when or why.</p>
 <p>I was finding it initially difficult synthesise and apply the pieces of information and there was a lack of something to place it all into a real-world solution-design context.</p>
-<p>Initially I felt like I was going round in circles simply trying to get a design to occur to me by simply reading the documentation.</p>
-<p>The break-through came when starting to implement something (I simply didnt know where I was going before I set off - no compass, no map). I registered a cheap domain I could use for testing for sake of this article I'll use the name <code>contosoapps.xyz</code>).</p>
-<p>For example, how should I use Zones and records in combination with Kubernetes Ingress Controllers and Resources to expose a suite of web applications or microservices and their APIs to the public internet whilst supporting a 'route to live' set of environments into which to deploy these artefacts so that they can be tested while they are under development.</p>
-<p>In other words how can I efficiently use domain names to support Develeopment, Testing, and Staging Environments? Do I need a separate domain name for each Environment? Do I need to have a separate Kubernetes cluster for each or can I combine domain names and one or more clusters in any combination?</p>
+<p>For example, how should I expose a suite of web applications or microservices and their APIs to the public internet whilst supporting a 'route to live' set of environments into which to deploy these artefacts so that they can be tested while they are under development.</p>
+<p>In other words how can I efficiently use domain names to support Development, Testing, and Staging Environments? Do I need a separate domain name for each Environment? Do I need to have a separate Kubernetes cluster for each or can I combine domain names and one or more clusters in any combination?</p>
 <p>I hope to answer the above questions.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>While my original design conundrum arose in how to use a domain name with one or more AKS clusters, this article will contain information relavant to using domain names with Azure Resources generally</p>
 </div>
 <h2 id="if-at-first-you-dont-succeed-play">If at first you don't succeed - Play!<a class="headerlink" href="#if-at-first-you-dont-succeed-play" title="Permanent link">&para;</a></h2>
-<p>The journey began while I was trying to grok the <code>external-dns</code> project. This is can be installed into a cluster and it watches deployments for any that require DNS records to be created or updated and it manages records in an associated Azure DNS Zone resource.</p>
-<p>Since I didn't have a custom domain name I could use I attempted to use the Azure-assigned fully qualified domain name (FQDN). Any AKS cluster into which a Service of type <code>LoadBalancer</code> has been deployed will have a Public IP resource deployed into the cluster-managed Resource Group. Any Azure Public IP (PIP) resource can optionally have a DNS name label applied which will then mean that this address will resolve to the IP address.</p>
+<p>I knew I wanted to build a solution that would combine <code>cert-manager</code> and <code>external-dns</code> controllers in each Kubernetes cluster so that applications could be deployed without the Application Developers needing to manage either DNS records nor handling certificates or key pairs in deployment pipelines, thus also avoiding any risk of inadvertantly exposing secrets and certificates in source code repositories. My problem was that none of the documentation I could find brought all of these pieces together in a multi-environment solution. I could get pieces working in isolation but how to bring them all together?</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>external-dns</code> project
+This can be installed into a cluster and it watches deployments for any that require DNS records to be created or updated and it manages records in an associated Azure DNS Zone resource.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>cert-manager</code>project
+This is a native Kubernetes certificate management controller which ca be used to issue certificates automatically. It ensures </p>
+</div>
+<p>Initially I felt like I was going round in circles simply trying to get a 'multi-environment' design to occur to me by simply reading the documentation for AKS and for these other open-source components.</p>
+<p>The break-through came when starting to implement something simple and trying to build towards a more complex solution (I simply didn't know where I was going before I set off - no compass, no map).</p>
+<h3 id="trying-out-cert-manager">Trying out <code>cert-manager</code><a class="headerlink" href="#trying-out-cert-manager" title="Permanent link">&para;</a></h3>
+<p>Since I didn't have a custom domain name I could use I attempted to use the Azure-assigned fully qualified domain name (FQDN). Any AKS cluster into which a Service of type <code>LoadBalancer</code> has been deployed will have a Public IP resource deployed into the cluster-managed Resource Group. Any Azure Public IP (PIP) resource can optionally have a DNS name label applied which will then mean that this address will resolve to the IP address. So that seemed like the simplest way to test <code>cert-manager</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>The documentation states it best:
 <em>"You can specify a DNS domain name label for a public IP resource, which creates a mapping for domainnamelabel.location.cloudapp.azure.com to the public IP address in the Azure-managed DNS servers"</em> \
 from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-ip-addresses-overview-arm">IP address types and allocation methods in Azure &gt; DNS hostname resolution</a></p>
 </div>
-<p>So, in my case, given that adding a name label of <code>contosoapps</code> to my PIP I wondered if I could use <code>external-dns</code> to manage records for Ingess resources in my cluster, where the FQDN is therefore <code>contosoapps.westeurope.cloudapp.azure.com</code>.</p>
-<p>The <a href="https://docs.microsoft.com/en-us/azure/aks/http-application-routing">Microsoft documentation</a> covering <code>externals-dns</code> only applies to a cluster where the HTTP application routing add-on has been enabled and given that this add-on is not recommended for production use I wanted to avoiding this add-on.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The HTTP application routing add-on automatically creates a DNS Zone for you and creates two controllers inside the cluster (an Ingress controller and External-DNS controller) and I wanted to understand how to deploy and manage these components properly without it happening 'auto-magically'!</p>
-</div>
-<p>Eventually I was able to piece together the elements of a solution from <a href="https://github.com/JasonvanBrackel/kubernetes-external-dns-in-rancher">this page</a> (albeit not using Rancher in my case).</p>
+<p>So, in my case, given that adding a name label of <code>contosoapps</code> to my PIP the FQDN is therefore <code>contosoapps.westeurope.cloudapp.azure.com</code>.</p>
 <p>Once this was working I was able to host multiple services, each with an Ingress based on the FQDN. So, for example, the <code>demo-nginx</code> app could be reached with the URL <code>demo-nqinx.contosoapps.westeurope.cloudapp.azure.com</code>.</p>
 <table>
 <thead>
@@ -510,10 +595,59 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 <li><strong>dev</strong>.demo-nqinx...</li>
 <li><strong>dev</strong>-demo-nqinx...</li>
 </ul>
-<p>I could not find this documented anywhere but it seems that name labels on Public IP Addresses only support a single label and so we cannot use FQDNS with aything other than 6-part names. In the first two examples above I'm trying to use 7-part names and in the third example I would need more than one name label on the IP address - one for each environment.</p>
+<p>I could not find this documented anywhere but it seems that name labels on Public IP Addresses only support a single label and so we cannot use FQDNS with anything other than 6-part names. In the first two examples above I'm trying to use 7-part names and in the third example I would need more than one name label on the IP address - one for each environment.</p>
+<h4 id="when-in-doubt-puchase-a-custom-domain-name">When in doubt - Puchase a Custom Domain Name!<a class="headerlink" href="#when-in-doubt-puchase-a-custom-domain-name" title="Permanent link">&para;</a></h4>
+<p>So it was clear that I needed to purchase my own Custom Domain Name in order to fully explore and model a realistic scenario with multiple deployment environments. I registered a cheap domain I could use for testing for sake of this article I'll use the name <code>contosoapps.xyz</code>).</p>
+<p>Once I have a domain I'll somehow need to use an Azure DNS Zone and DNS records in combination with Kubernetes Ingress Controller and Resources to expose a suite of web applications or microservices and their APIs to the public internet.</p>
+<table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Recordset Name</th>
+<th>Record Type</th>
+<th>Alias Resource Type</th>
+<th>Alias Resource Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Production</td>
+<td>@</td>
+<td>NS</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Development Environment Ingress</td>
+<td>dev</td>
+<td>A</td>
+<td>Public IP Address</td>
+<td>LoadBalancer Service Public IP</td>
+</tr>
+<tr>
+<td>Staging Environment Ingress</td>
+<td>staging</td>
+<td>A</td>
+<td>Public IP Address</td>
+<td>LoadBalancer Service Public IP</td>
+</tr>
+</tbody>
+</table>
+<p>This model uses a single DNS Zone resource with an alias record for each Environment we wish to represent. This model works fine for a solution where we only want to use <code>cert-manager</code> is too simplistic if we also want to use <code>external-dns</code> to manage DNS records automatically without knowing all required names ahead of time.</p>
+<h3 id="trying-out-external-dns">Trying out <code>external-dns</code><a class="headerlink" href="#trying-out-external-dns" title="Permanent link">&para;</a></h3>
+<p>The only <a href="https://docs.microsoft.com/en-us/azure/aks/http-application-routing">Microsoft documentation</a> I could find covering <code>externals-dns</code> only applies to a cluster where the HTTP application routing add-on has been enabled and given that this add-on is not recommended for production use I wanted to avoiding this add-on.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The HTTP application routing add-on automatically creates a DNS Zone for you and creates two controllers inside the cluster (an Ingress controller and External-DNS controller) and I wanted to understand how to deploy and manage these components properly without it happening 'auto-magically'!</p>
+</div>
+<p>Eventually I was able to piece together the elements of a solution for using <code>external-dns</code> in AKS from <a href="https://github.com/JasonvanBrackel/kubernetes-external-dns-in-rancher">this page</a> (albeit not using Rancher in my case).</p>
+<p>Again this provided a working demonstration of <code>external-dns</code> on it's own but not in a multi-environment deployment context.</p>
+<p>My problem is that with <code>external-dns</code> the DNS Zone resource represents the first <em>two parts</em> of my domain name. In this example, my Apex is <code>contosoapp.com</code> which has two parts, and <code>external-dns</code> controller would only manage <em>part three</em> by adding A-records such as <code>dev-app</code> and <code>staging-app</code>) but we'll be limited to three-part names.</p>
+<h2 id="hierarchy-to-the-rescue">Hierarchy to the rescue!<a class="headerlink" href="#hierarchy-to-the-rescue" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In Progress - the plan is to flesh this out a bit more: https://jwendl.net/code-notes/azure/network/</p>
+<p>In Progress
+The plan is to flesh this out a bit more as I keep trying things, but a wee spoiler is that it's basically inspired by a tiny snippet of code I found here: https://jwendl.net/code-notes/azure/network/</p>
 </div>
                 
                   
