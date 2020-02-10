@@ -639,7 +639,7 @@
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>you can to use the Unix tool <code>ls</code> after installing <code>coreutils</code> but you first need to remove the <code>PowerShell</code> alias already in place\
+<p>you can use the Unix tool <code>ls</code> after installing <code>coreutils</code> but you first need to remove the <code>PowerShell</code> alias already in place\
 <em>i.e. add this to your Powershell <code>$profile</code>:</em></p>
 </div>
 <div class="codehilite"><pre><span></span><span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">ls</span>
@@ -654,8 +654,8 @@
 <h3 id="buckets">Buckets<a class="headerlink" href="#buckets" title="Permanent link">&para;</a></h3>
 <p>Then, I add additional <a href="https://github.com/lukesampson/scoop/wiki/Buckets"><em>Buckets</em></a>. Buckets are collections of apps which are additional / optional to the <a href="https://github.com/ScoopInstaller/Main/blob/master/bucket"><em>main</em></a> bucket</p>
 <div class="codehilite"><pre><span></span><span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">extras</span>
-<span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">main</span>
 <span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">versions</span>
+<span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">Sysinternals</span>
 </pre></div>
 
 
@@ -696,7 +696,7 @@
 </pre></div>
 
 
-<p>For system tools you'll probably want to user the <code>current</code> shim to avoid those tools breaking between updates.</p>
+<p>For system tools you'll probably want to use the <code>current</code> shim to avoid those tools breaking between updates.</p>
 <h3 id="specifying-application-versions">Specifying Application Versions<a class="headerlink" href="#specifying-application-versions" title="Permanent link">&para;</a></h3>
 <p>The <code>versions</code> bucket contains a way to obtain versions other than the latest version of an application. This is used in combination with <code>scoop reset</code> command to switch between versions of an app. Scoop creates a shim for each version and <code>scoop reset</code> switches the <code>current</code> shim between those versions.</p>
 <p>For example: <a href="https://github.com/lukesampson/scoop/wiki/Switching-Ruby-And-Python-Versions">Switching-Ruby-And-Python-Versions</a></p>
