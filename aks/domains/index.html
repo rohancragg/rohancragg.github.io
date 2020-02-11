@@ -537,26 +537,32 @@
                 
                 
                 <h1 id="clusters-of-domains-designing-domains-and-dns-for-aks">Clusters of Domains - designing domains and DNS for AKS<a class="headerlink" href="#clusters-of-domains-designing-domains-and-dns-for-aks" title="Permanent link">&para;</a></h1>
-<p>While the <a href="https://docs.microsoft.com/en-us/azure/dns/">documentation on <code>Azure DNS</code></a> (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do it, but not when or why.</p>
-<p>I was finding it initially difficult synthesise and apply the pieces of information and there was a lack of something to place it all into a real-world solution-design context.</p>
+<p>While the <a href="https://docs.microsoft.com/en-us/azure/dns/">documentation on Azure DNS</a> (at the time of writing in early 2020)) covers the essentials of what you need to know I personally found it somewhat dry in that it assumed that you knew what you wanted to do with Zones and records and mostly explained how to do create and configure each component piece without providing much context about when and where you need them and how you combine them into a  solution to meet requirements.</p>
+<p>I was finding it initially difficult to synthesise and apply the pieces of information and there was a lack of something to place it all into a real-world solution-design context.</p>
 <p>For example, how should I expose a suite of web applications or microservices and their APIs to the public internet whilst supporting a 'route to live' set of environments into which to deploy these artefacts so that they can be tested while they are under development.</p>
-<p>In other words how can I efficiently use domain names to support Development, Testing, and Staging Environments? Do I need a separate domain name for each Environment? Do I need to have a separate Kubernetes cluster for each or can I combine domain names and one or more clusters in any combination?</p>
-<p>I hope to answer the above questions.</p>
+<p>In other words: </p>
+<blockquote>
+<p><em>How can I efficiently use domain names to support Development, Testing, Staging, and Production Environments?</em></p>
+<p><em>Should I use a separate domain name for each Environment?</em></p>
+<p><em>Do I need to have a separate Kubernetes cluster for each or can I combine custom domain names with one or more clusters in any combination?</em></p>
+</blockquote>
+<p>I'll share what I've found so far and hope to answer the above questions.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>While my original design conundrum arose in how to use a domain name with one or more AKS clusters, this article will contain information relavant to using domain names with Azure Resources generally</p>
+<p>While my original design conundrum arose in how to use a custom domain name with one or more AKS clusters, this article will contain information relavant to using domain names with Azure Resources generally</p>
 </div>
 <h2 id="if-at-first-you-dont-succeed-play">If at first you don't succeed - Play!<a class="headerlink" href="#if-at-first-you-dont-succeed-play" title="Permanent link">&para;</a></h2>
-<p>I knew I wanted to build a solution that would combine <code>cert-manager</code> and <code>external-dns</code> controllers in each Kubernetes cluster so that applications could be deployed without the Application Developers needing to manage either DNS records nor handling certificates or key pairs in deployment pipelines, thus also avoiding any risk of inadvertantly exposing secrets and certificates in source code repositories. My problem was that none of the documentation I could find brought all of these pieces together in a multi-environment solution. I could get pieces working in isolation but how to bring them all together?</p>
+<p>I knew I wanted to build a solution that would combine <code>cert-manager</code> and <code>external-dns</code> controllers in each Kubernetes cluster so that applications could be deployed without the Application Developers needing to manage either DNS records nor handling certificates or key pairs in deployment pipelines, thus also avoiding any risk of inadvertantly exposing secrets and certificates in source code repositories. </p>
+<p>My problem was that none of the documentation I could find brought all of these pieces together in a multi-environment solution. I could get pieces working in isolation but how to bring them all together?</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p><strong>The <code>external-dns</code> project</strong> \
-This can be installed into a cluster and it watches deployments for any that require DNS records to be created or updated and it manages records in an associated Azure DNS Zone resource.</p>
+<p><strong>The <code>external-dns</code> project</strong></p>
+<p>This can be installed into a cluster and it watches deployments for any that require DNS records to be created or updated and it manages records in an associated Azure DNS Zone resource.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p><strong>The <code>cert-manager</code>project</strong> \
-This is a native Kubernetes certificate management controller which ca be used to issue certificates automatically. It ensures </p>
+<p><strong>The <code>cert-manager</code>project</strong> </p>
+<p>This is a native Kubernetes certificate management controller which can be used to issue certificates automatically. It ensures </p>
 </div>
 <p>Initially I felt like I was going round in circles simply trying to get a 'multi-environment' design to occur to me by simply reading the documentation for AKS and for these other open-source components.</p>
 <p>The break-through came when starting to implement something simple and trying to build towards a more complex solution (I simply didn't know where I was going before I set off - no compass, no map).</p>
@@ -564,9 +570,9 @@ This is a native Kubernetes certificate management controller which ca be used t
 <p>Since I didn't have a custom domain name I could use I attempted to use the Azure-assigned fully qualified domain name (FQDN). Any AKS cluster into which a Service of type <code>LoadBalancer</code> has been deployed will have a Public IP resource deployed into the cluster-managed Resource Group. Any Azure Public IP (PIP) resource can optionally have a DNS name label applied which will then mean that this address will resolve to the IP address. So that seemed like the simplest way to test <code>cert-manager</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The documentation states it best:
-<em>"You can specify a DNS domain name label for a public IP resource, which creates a mapping for domainnamelabel.location.cloudapp.azure.com to the public IP address in the Azure-managed DNS servers"</em> \
-from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-ip-addresses-overview-arm">IP address types and allocation methods in Azure &gt; DNS hostname resolution</a></p>
+<p>The documentation states it best:</p>
+<p><em>"You can specify a DNS domain name label for a public IP resource, which creates a mapping for domainnamelabel.location.cloudapp.azure.com to the public IP address in the Azure-managed DNS servers"</em></p>
+<p>from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-ip-addresses-overview-arm">IP address types and allocation methods in Azure &gt; DNS hostname resolution</a></p>
 </div>
 <p>So, in my case, given that adding a name label of <code>contosoapps</code> to my PIP the FQDN is therefore <code>contosoapps.westeurope.cloudapp.azure.com</code>.</p>
 <p>Once this was working I was able to host multiple services, each with an Ingress based on the FQDN. So, for example, the <code>demo-nginx</code> app could be reached with the URL <code>demo-nqinx.contosoapps.westeurope.cloudapp.azure.com</code>.</p>
@@ -707,7 +713,7 @@ from: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-ne
 As described in the documentation <a href="https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns#delegate-the-domain">Tutorial: Host your domain in Azure DNS</a>: \
     <em>"In the registrar's DNS management page, edit the NS records and replace the NS records with the Azure DNS name servers."</em></p>
 </div>
-<p>In my case this was with https://123-reg.co.uk and looks like this:</p>
+<p>In my case this was with <a href="https://123-reg.co.uk">https://123-reg.co.uk</a> and looks like this:</p>
 <p><img alt="Image" src="../media/registrar-update-nameservers.png?raw=true" /></p>
 <h3 id="a-dns-zone-per-environment">A DNS Zone Per environment<a class="headerlink" href="#a-dns-zone-per-environment" title="Permanent link">&para;</a></h3>
 <p>With this solution in place we should now be free to allow an instance of <code>external-dns</code> manage each DNS Zone resource separately.</p>
