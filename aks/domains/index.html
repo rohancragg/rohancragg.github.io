@@ -619,12 +619,12 @@
 <tr>
 <td>demo-nginx</td>
 <td>Development</td>
-<td><em>demo-nqinx.</em><em>dev</em><em>.contosoapps.westeurope.cloudapp.azure.com</em>*</td>
+<td><em>demo-nqinx.**dev*</em>.contosoapps.westeurope.cloudapp.azure.com**</td>
 </tr>
 <tr>
 <td>demo-nginx</td>
 <td>Staging</td>
-<td><em>demo-nqinx.</em><em>test</em><em>.contosoapps.westeurope.cloudapp.azure.com</em>*</td>
+<td><em>demo-nqinx.**test*</em>.contosoapps.westeurope.cloudapp.azure.com**</td>
 </tr>
 <tr>
 <td>demo-nginx</td>
@@ -718,10 +718,9 @@
 <span class="n">az</span> <span class="n">network</span> <span class="n">dns</span> <span class="n">record-set</span> <span class="n">ns</span> <span class="nb">add-record</span> <span class="n">-g</span> <span class="nv">$dnsRgName</span> <span class="n">-z</span> <span class="nv">$domainName</span> <span class="p">-</span><span class="n">-record-set-name</span> <span class="s1">&#39;dev&#39;</span> <span class="p">-</span><span class="n">-nsdname</span> <span class="nv">$ns3</span>
 </code></pre></div>
 
-
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p><strong> Delegating my custom domain </strong>
+<p>** Delegating my custom domain **
 As described in the documentation <a href="https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns#delegate-the-domain">Tutorial: Host your domain in Azure DNS</a>: \
     <em>"In the registrar's DNS management page, edit the NS records and replace the NS records with the Azure DNS name servers."</em></p>
 </div>

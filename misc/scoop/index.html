@@ -324,13 +324,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paths" class="md-nav__link">
-    Paths
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#specifying-application-versions" class="md-nav__link">
     Specifying Application Versions
   </a>
@@ -533,13 +526,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#paths" class="md-nav__link">
-    Paths
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#specifying-application-versions" class="md-nav__link">
     Specifying Application Versions
   </a>
@@ -648,7 +634,6 @@
 <span class="n">scoop</span> <span class="n">install</span> <span class="n">nodejs</span> 
 </code></pre></div>
 
-
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>you can use the Unix tool <code>ls</code> after installing <code>coreutils</code> but you first need to remove the <code>PowerShell</code> alias already in place\
@@ -662,7 +647,6 @@
 <span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">rm</span>
 </code></pre></div>
 
-
 <h3 id="buckets">Buckets<a class="headerlink" href="#buckets" title="Permanent link">&para;</a></h3>
 <p>Then, I add additional <a href="https://github.com/lukesampson/scoop/wiki/Buckets"><em>Buckets</em></a>. Buckets are collections of apps which are additional / optional to the <a href="https://github.com/ScoopInstaller/Main/blob/master/bucket"><em>main</em></a> bucket</p>
 <div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">extras</span>
@@ -670,14 +654,11 @@
 <span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">Sysinternals</span>
 </code></pre></div>
 
-
-<p>Then yet more handy tools I use:</p>
+<p>Then yet more handy tools I use:
 <div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">azure-cli</span> <span class="n">dotnet-sdk</span> <span class="n">go</span> <span class="n">hugo</span> <span class="n">helm</span> <span class="n">pwsh</span>
 <span class="c"># from extras bucket:</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="n">vcredist2019</span> <span class="n">linqpad</span> <span class="n">notepadplusplus</span> <span class="n">paint</span><span class="p">.</span><span class="n">net</span> <span class="n">windows-terminal</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Other useful (possibly useful?) buckets that I've not yet had a use for:</p>
@@ -686,28 +667,18 @@
 <li>full list of <a href="https://github.com/lukesampson/scoop#known-application-buckets">known buckets</a></li>
 </ul>
 </div>
-<h3 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h3>
-<p>Referencing the path to an application installed by Scoop</p>
-<div class="codehilite"><pre><span></span><code>%UserProfile%/scoop/apps
-</code></pre></div>
-
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Those installed with the <code>--global</code> (and with the <code>sudo</code> command) will reside in the path</p>
 <p><code>%ProgramData%/scoop/apps</code></p>
 </div>
 <p>For each version of an application the files will be in a directory with the version number, but Scoop creates a <em>Shim</em> for the current version in the path <code>%UserProfile%\scoop\apps\{AppName}\current</code>.</p>
-<p>For example: the path to <em>Python</em> (<code>python.exe</code>) will be either:</p>
+<p>For example: the path to <em>Python</em> (<code>python.exe</code>) will be either:
 <div class="codehilite"><pre><span></span><code>%UserProfile%\scoop\apps\python\3.8.1\python.exe
 </code></pre></div>
-
-
-<p>or:</p>
+or:
 <div class="codehilite"><pre><span></span><code>%UserProfile%\scoop\apps\python\current\python.exe
-</code></pre></div>
-
-
+</code></pre></div></p>
 <p>For system tools you'll probably want to use the <code>current</code> shim to avoid those tools breaking between updates.</p>
 <h3 id="specifying-application-versions">Specifying Application Versions<a class="headerlink" href="#specifying-application-versions" title="Permanent link">&para;</a></h3>
 <p>The <code>versions</code> bucket contains a way to obtain versions other than the latest version of an application. This is used in combination with <code>scoop reset</code> command to switch between versions of an app. Scoop creates a shim for each version and <code>scoop reset</code> switches the <code>current</code> shim between those versions.</p>
@@ -722,7 +693,6 @@
 <span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">-U</span> <span class="n">pip</span>
 </code></pre></div>
 
-
 <h2 id="system-fonts">System Fonts<a class="headerlink" href="#system-fonts" title="Permanent link">&para;</a></h2>
 <p>Here's another place where Scoop comes to the rescue to avoid clunky download and installs for system fonts!</p>
 <div class="admonition info">
@@ -733,23 +703,20 @@
 <span class="n">sudo</span> <span class="n">scoop</span> <span class="n">install</span> <span class="n">Delugia-Nerd-Font-Complete</span>
 </code></pre></div>
 
-
 <h2 id="productivity-tools">Productivity Tools<a class="headerlink" href="#productivity-tools" title="Permanent link">&para;</a></h2>
 <h3 id="mkdocs">MkDocs<a class="headerlink" href="#mkdocs" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p><a href="https://www.mkdocs.org/">MkDocs</a> "Project documentation with Markdown"</p>
 </blockquote>
-<p>I use this for writing <strong>this site!</strong>:</p>
+<p>I use this for writing <strong>this site!</strong>:
 <div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">mkdocs</span>
 <span class="n">python</span> <span class="p">.\</span><span class="n">scoop</span><span class="p">\</span><span class="n">apps</span><span class="p">\</span><span class="n">python</span><span class="p">\</span><span class="n">current</span><span class="p">\</span><span class="n">Tools</span><span class="p">\</span><span class="n">scripts</span><span class="p">\</span><span class="n">win_add2path</span><span class="p">.</span><span class="n">py</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h4 id="install-the-custom-theme">Install the Custom Theme<a class="headerlink" href="#install-the-custom-theme" title="Permanent link">&para;</a></h4>
-<p>Using <a href="https://squidfunk.github.io/mkdocs-material/">Material theme</a> and dependencies for <a href="https://squidfunk.github.io/mkdocs-material/extensions/codehilite/">CodeHilite</a></p>
+<p>Using <a href="https://squidfunk.github.io/mkdocs-material/">Material theme</a> and dependencies for <a href="https://squidfunk.github.io/mkdocs-material/extensions/codehilite/">CodeHilite</a>
 <div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">mkdocs-material</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pygments</span> <span class="c"># for source code syntax highlighting</span>
-</code></pre></div>
+</code></pre></div></p>
                 
                   
                 

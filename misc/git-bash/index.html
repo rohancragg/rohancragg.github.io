@@ -542,21 +542,27 @@
 <h2 id="boring-option-transposing-between-bash-and-powershell">Boring option - Transposing between Bash and PowerShell<a class="headerlink" href="#boring-option-transposing-between-bash-and-powershell" title="Permanent link">&para;</a></h2>
 <p>Bash and PowerShell have some aspects of syntax in common (e.g. when referencing a variable like this: <code>$myVariable</code>)</p>
 <p>But there are some other things that differ (e.g. when assigning a variable like this):</p>
-<p>```powershell tab="PowerShell"
-$myVariable='some text'</p>
-<div class="codehilite"><pre><span></span><code>```bash tab=&quot;Bash&quot;
-$myVariable=&#39;some text&#39;
-</code></pre></div>
-
-
+<div class="superfences-tabs">
+<input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
+<label for="__tab_1_0">PowerShell</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code><span class="nv">$myVariable</span><span class="p">=</span><span class="s1">&#39;some text&#39;</span>
+</code></pre></div></div>
+<input name="__tabs_1" type="radio" id="__tab_1_1" />
+<label for="__tab_1_1">Bash</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code><span class="nv">myVariable</span><span class="o">=</span><span class="s1">&#39;some text&#39;</span>
+</code></pre></div></div>
+</div>
 <p>... or when setting an environment variable like this:</p>
-<p>```powershell tab="PowerShell"
-SET MY_ENV='some text'</p>
-<div class="codehilite"><pre><span></span><code>```bash tab=&quot;Bash&quot;
-export MY_ENV=&#39;some text&#39;
-</code></pre></div>
-
-
+<div class="superfences-tabs">
+<input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
+<label for="__tab_2_0">PowerShell</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code><span class="nb">SET </span><span class="n">MY_ENV</span><span class="p">=</span><span class="s1">&#39;some text&#39;</span>
+</code></pre></div></div>
+<input name="__tabs_2" type="radio" id="__tab_2_1" />
+<label for="__tab_2_1">Bash</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code><span class="nb">export</span> <span class="nv">MY_ENV</span><span class="o">=</span><span class="s1">&#39;some text&#39;</span>
+</code></pre></div></div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p><strong>Shell Trivia</strong>
@@ -567,11 +573,10 @@ SH is Bourne Shell and so Bash is Born-again Bourne Shell</p>
 <div class="codehilite"><pre><span></span><code>touch ~/.bashrc
 </code></pre></div>
 
-
 <h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p><strong> What is Git? </strong></p>
+<p>** What is Git? **</p>
 <p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
 <p>A version-control system is a tool for tracking changes in source code during software development. It is designed for coordinating work among a group of programmers, but it can be used to track changes in any set of files.</p>
 </div>
@@ -581,16 +586,13 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/git&quot;</span> &gt;&gt; ~/.bashrc
 </code></pre></div>
 
-
-<p>If using PowerShell (as I often do) then the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code></a> Module is a great option too.</p>
+<p>If using PowerShell (as I often do) then the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code></a> Module is a great option too.
 <div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">posh-git</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h4 id="kubectl-cli">kubectl CLI<a class="headerlink" href="#kubectl-cli" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p><strong> What is Kubectl? </strong></p>
+<p>** What is Kubectl? **</p>
 <p>Kubectl is a command line tool for controlling Kubernetes clusters.</p>
 </div>
 <p>The kubectl completion script for Bash can be generated with the command <code>kubectl completion bash</code>.
@@ -599,7 +601,6 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <div class="codehilite"><pre><span></span><code>kubectl completion bash &gt; ~/bash_completion.d/kubectl
 <span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/kubectl&quot;</span> &gt;&gt; ~/.bashrc
 </code></pre></div>
-
 
 <h3 id="coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode">Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode<a class="headerlink" href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" title="Permanent link">&para;</a></h3>
 <p>Git Bash is a 'Linux-like' shell experience without going 'all the way' and dropping into the Windows Subsystem of Linx (WSL) Bash shell.</p>
