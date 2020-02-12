@@ -13,7 +13,7 @@
         <meta name="description" content="A Material Design theme for MkDocs">
       
       
-        <link rel="canonical" href="https://rohancragg.github.io/misc/scoop/">
+        <link rel="canonical" href="https://rohancragg.github.io/misc/git-bash/">
       
       
         <meta name="author" content="Rohan Cragg">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Scoop & Co</title>
+        <title>Bash Shell on Windows - What I learned today (@rohancragg)</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#the-scoop-on-my-personal-machine-build" tabindex="0" class="md-skip">
+      <a href="#bash-shell-on-windows" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Scoop & Co
+                Bash Shell on Windows
               
             </span>
           
@@ -273,6 +273,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../scoop/" title="Scoop & Co" class="md-nav__link">
+      Scoop & Co
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -284,11 +296,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Scoop & Co
+        Bash Shell on Windows
       </label>
     
-    <a href="./" title="Scoop & Co" class="md-nav__link md-nav__link--active">
-      Scoop & Co
+    <a href="./" title="Bash Shell on Windows" class="md-nav__link md-nav__link--active">
+      Bash Shell on Windows
     </a>
     
       
@@ -302,37 +314,38 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-daddy-scoop" class="md-nav__link">
-    The Daddy... Scoop!
+  <a href="#boring-option-transposing-between-bash-and-powershell" class="md-nav__link">
+    Boring option - Transposing between Bash and PowerShell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cool-option-git-bash" class="md-nav__link">
+    Cool option - Git Bash
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-scoop-and-base-set-of-tools" class="md-nav__link">
-    Install Scoop and base set of tools
+  <a href="#coolness-pt1-configuring-auto-complete" class="md-nav__link">
+    Coolness pt.1 - Configuring Auto-Complete
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    Git
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#buckets" class="md-nav__link">
-    Buckets
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#paths" class="md-nav__link">
-    Paths
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specifying-application-versions" class="md-nav__link">
-    Specifying Application Versions
+  <a href="#kubectl-cli" class="md-nav__link">
+    kubectl CLI
   </a>
   
 </li>
@@ -341,59 +354,11 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#common-pre-requisites" class="md-nav__link">
-    Common Pre-Requisites
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#python-and-pip" class="md-nav__link">
-    Python and PIP
+  <a href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" class="md-nav__link">
+    Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-fonts" class="md-nav__link">
-    System Fonts
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#productivity-tools" class="md-nav__link">
-    Productivity Tools
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mkdocs" class="md-nav__link">
-    MkDocs
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-the-custom-theme" class="md-nav__link">
-    Install the Custom Theme
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -410,18 +375,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../git-bash/" title="Bash Shell on Windows" class="md-nav__link">
-      Bash Shell on Windows
-    </a>
   </li>
 
         
@@ -511,37 +464,38 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-daddy-scoop" class="md-nav__link">
-    The Daddy... Scoop!
+  <a href="#boring-option-transposing-between-bash-and-powershell" class="md-nav__link">
+    Boring option - Transposing between Bash and PowerShell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cool-option-git-bash" class="md-nav__link">
+    Cool option - Git Bash
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-scoop-and-base-set-of-tools" class="md-nav__link">
-    Install Scoop and base set of tools
+  <a href="#coolness-pt1-configuring-auto-complete" class="md-nav__link">
+    Coolness pt.1 - Configuring Auto-Complete
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    Git
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#buckets" class="md-nav__link">
-    Buckets
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#paths" class="md-nav__link">
-    Paths
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specifying-application-versions" class="md-nav__link">
-    Specifying Application Versions
+  <a href="#kubectl-cli" class="md-nav__link">
+    kubectl CLI
   </a>
   
 </li>
@@ -550,59 +504,11 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#common-pre-requisites" class="md-nav__link">
-    Common Pre-Requisites
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#python-and-pip" class="md-nav__link">
-    Python and PIP
+  <a href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" class="md-nav__link">
+    Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-fonts" class="md-nav__link">
-    System Fonts
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#productivity-tools" class="md-nav__link">
-    Productivity Tools
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mkdocs" class="md-nav__link">
-    MkDocs
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-the-custom-theme" class="md-nav__link">
-    Install the Custom Theme
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -627,129 +533,90 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/misc/scoop.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/misc/git-bash.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="the-scoop-on-my-personal-machine-build">The 'Scoop' on my personal machine build<a class="headerlink" href="#the-scoop-on-my-personal-machine-build" title="Permanent link">&para;</a></h1>
-<p>This page describes how I'm <code>current</code>-ly using Scoop (and other Package Managers) to configure my system</p>
-<h2 id="the-daddy-scoop"><em>The Daddy...</em> <strong>Scoop</strong>!<a class="headerlink" href="#the-daddy-scoop" title="Permanent link">&para;</a></h2>
-<p>Get <a href="https://scoop.sh/">scoop.sh</a> and check out the <a href="https://github.com/lukesampson/scoop/wiki">wiki</a> for latest info - or see below for the <code>TL;DR</code></p>
-<blockquote>
-<p>Scoop focuses on open-source, command-line developer tools" but then those are the kinds of tools I'm using more and more...
-...You're familiar with UNIX tools, and you wish there were more of them on Windows</p>
-</blockquote>
-<p><em>from: <a href="https://github.com/lukesampson/scoop/wiki/Chocolatey-Comparison">https://github.com/lukesampson/scoop/wiki/Chocolatey-Comparison</a></em></p>
-<h3 id="install-scoop-and-base-set-of-tools">Install <code>Scoop</code> and base set of tools<a class="headerlink" href="#install-scoop-and-base-set-of-tools" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="nb">Invoke-Expression</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://get.scoop.sh&#39;</span><span class="p">)</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="n">sudo</span>
-<span class="n">sudo</span> <span class="n">scoop</span> <span class="n">install</span> <span class="n">7zip</span> <span class="n">git</span> <span class="p">-</span><span class="n">-global</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="nb">curl </span><span class="n">grep</span> <span class="n">sed</span> <span class="n">less</span> <span class="n">touch</span> <span class="n">nano</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="n">coreutils</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="n">nodejs</span> 
+                <h1 id="bash-shell-on-windows">Bash Shell on Windows<a class="headerlink" href="#bash-shell-on-windows" title="Permanent link">&para;</a></h1>
+<p>I often find code snippets for automating things in my world (mostly Azure Cloud admin and development) tend to assume that I'm using a Linux shell of some sort and so the commands and scripts are in Bash.</p>
+<p>Specifically, I do lots of things with tools such as <a href="https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest">Azure CLI</a> and the examples often default to Bash syntax. While these are usually pretty simple to transpose into something that could exectue in PowerShell (see below) it's still annoying not to be able to copy and paste and execute the commands there and then, or add them to a script file for future use without first translating them to PowerShell.</p>
+<h2 id="boring-option-transposing-between-bash-and-powershell">Boring option - Transposing between Bash and PowerShell<a class="headerlink" href="#boring-option-transposing-between-bash-and-powershell" title="Permanent link">&para;</a></h2>
+<p>Bash and PowerShell have some aspects of syntax in common (e.g. when referencing a variable like this: <code>$myVariable</code>)</p>
+<p>But there are some other things that differ (e.g. when assigning a variable like this):</p>
+<p>```powershell tab="PowerShell"
+$myVariable='some text'</p>
+<div class="codehilite"><pre><span></span><code>```bash tab=&quot;Bash&quot;
+$myVariable=&#39;some text&#39;
 </code></pre></div>
 
 
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>you can use the Unix tool <code>ls</code> after installing <code>coreutils</code> but you first need to remove the <code>PowerShell</code> alias already in place\
-<em>i.e. add this to your Powershell <code>$profile</code>:</em></p>
-</div>
-<div class="codehilite"><pre><span></span><code><span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">ls</span>
-<span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">cat</span>
-<span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">mv</span>
-<span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">ps</span>
-<span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">pwd</span>
-<span class="nb">Remove-Alias</span> <span class="n">-Name</span> <span class="nb">rm</span>
-</code></pre></div>
-
-
-<h3 id="buckets">Buckets<a class="headerlink" href="#buckets" title="Permanent link">&para;</a></h3>
-<p>Then, I add additional <a href="https://github.com/lukesampson/scoop/wiki/Buckets"><em>Buckets</em></a>. Buckets are collections of apps which are additional / optional to the <a href="https://github.com/ScoopInstaller/Main/blob/master/bucket"><em>main</em></a> bucket</p>
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">extras</span>
-<span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">versions</span>
-<span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">Sysinternals</span>
-</code></pre></div>
-
-
-<p>Then yet more handy tools I use:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">azure-cli</span> <span class="n">dotnet-sdk</span> <span class="n">go</span> <span class="n">hugo</span> <span class="n">helm</span> <span class="n">pwsh</span>
-<span class="c"># from extras bucket:</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="n">vcredist2019</span> <span class="n">linqpad</span> <span class="n">notepadplusplus</span> <span class="n">paint</span><span class="p">.</span><span class="n">net</span> <span class="n">windows-terminal</span>
+<p>... or when setting an environment variable like this:</p>
+<p>```powershell tab="PowerShell"
+SET MY_ENV='some text'</p>
+<div class="codehilite"><pre><span></span><code>```bash tab=&quot;Bash&quot;
+export MY_ENV=&#39;some text&#39;
 </code></pre></div>
 
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Other useful (possibly useful?) buckets that I've not yet had a use for:</p>
-<ul>
-<li><a href="https://github.com/TheRandomLabs/scoop-nonportable/tree/master/bucket">nonportable</a> - non-portable Applications that need to retain state between versions</li>
-<li>full list of <a href="https://github.com/lukesampson/scoop#known-application-buckets">known buckets</a></li>
-</ul>
+<p><strong>Shell Trivia</strong>
+SH is Bourne Shell and so Bash is Born-again Bourne Shell</p>
 </div>
-<h3 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h3>
-<p>Referencing the path to an application installed by Scoop</p>
-<div class="codehilite"><pre><span></span><code>%UserProfile%/scoop/apps
+<h2 id="cool-option-git-bash">Cool option - Git Bash<a class="headerlink" href="#cool-option-git-bash" title="Permanent link">&para;</a></h2>
+<h3 id="coolness-pt1-configuring-auto-complete">Coolness pt.1 - Configuring Auto-Complete<a class="headerlink" href="#coolness-pt1-configuring-auto-complete" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>touch ~/.bashrc
 </code></pre></div>
 
 
+<h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong> What is Git? </strong></p>
+<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+<p>A version-control system is a tool for tracking changes in source code during software development. It is designed for coordinating work among a group of programmers, but it can be used to track changes in any set of files.</p>
+</div>
+<p>Here's how to get auto-complete for <code>git</code> commands in Git Bash on Windows.</p>
+<div class="codehilite"><pre><span></span><code>mkdir ~/bash_completion.d   
+curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+<span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/git&quot;</span> &gt;&gt; ~/.bashrc
+</code></pre></div>
+
+
+<p>If using PowerShell (as I often do) then the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code></a> Module is a great option too.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">posh-git</span>
+</code></pre></div>
+
+
+<h4 id="kubectl-cli">kubectl CLI<a class="headerlink" href="#kubectl-cli" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><strong> What is Kubectl? </strong></p>
+<p>Kubectl is a command line tool for controlling Kubernetes clusters.</p>
+</div>
+<p>The kubectl completion script for Bash can be generated with the command <code>kubectl completion bash</code>.
+<a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations">from here:</a></p>
+<p>Here's how to get auto-complete for <code>kubectl</code> commands in Git Bash on Windows.</p>
+<div class="codehilite"><pre><span></span><code>kubectl completion bash &gt; ~/bash_completion.d/kubectl
+<span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/kubectl&quot;</span> &gt;&gt; ~/.bashrc
+</code></pre></div>
+
+
+<h3 id="coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode">Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode<a class="headerlink" href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" title="Permanent link">&para;</a></h3>
+<p>Git Bash is a 'Linux-like' shell experience without going 'all the way' and dropping into the Windows Subsystem of Linx (WSL) Bash shell.</p>
+<p>Whilst there are times when I'll use WSL too, there are times when I want to be working 'in Windows' but using a more Bash-like experience. This is where Git Bash come to the rescue.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Those installed with the <code>--global</code> (and with the <code>sudo</code> command) will reside in the path</p>
-<p><code>%ProgramData%/scoop/apps</code></p>
+<p>Git Bash is installed for you when you install Git for Windows, so if you're already using Git then you've kinda got this for free anyway.</p>
 </div>
-<p>For each version of an application the files will be in a directory with the version number, but Scoop creates a <em>Shim</em> for the current version in the path <code>%UserProfile%\scoop\apps\{AppName}\current</code>.</p>
-<p>For example: the path to <em>Python</em> (<code>python.exe</code>) will be either:</p>
-<div class="codehilite"><pre><span></span><code>%UserProfile%\scoop\apps\python\3.8.1\python.exe
-</code></pre></div>
-
-
-<p>or:</p>
-<div class="codehilite"><pre><span></span><code>%UserProfile%\scoop\apps\python\current\python.exe
-</code></pre></div>
-
-
-<p>For system tools you'll probably want to use the <code>current</code> shim to avoid those tools breaking between updates.</p>
-<h3 id="specifying-application-versions">Specifying Application Versions<a class="headerlink" href="#specifying-application-versions" title="Permanent link">&para;</a></h3>
-<p>The <code>versions</code> bucket contains a way to obtain versions other than the latest version of an application. This is used in combination with <code>scoop reset</code> command to switch between versions of an app. Scoop creates a shim for each version and <code>scoop reset</code> switches the <code>current</code> shim between those versions.</p>
-<p>For example: <a href="https://github.com/lukesampson/scoop/wiki/Switching-Ruby-And-Python-Versions">Switching-Ruby-And-Python-Versions</a></p>
-<h2 id="common-pre-requisites">Common Pre-Requisites<a class="headerlink" href="#common-pre-requisites" title="Permanent link">&para;</a></h2>
-<p>The following is a set of common pre-requisites for installing tools and utilitied (e.g. the <code>pip</code> package manager for python tools):</p>
-<h3 id="python-and-pip"><code>Python</code> and <code>PIP</code><a class="headerlink" href="#python-and-pip" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">python</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="nb">curl</span>
-<span class="nb">curl </span><span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">bootstrap</span><span class="p">.</span><span class="n">pypa</span><span class="p">.</span><span class="n">io</span><span class="p">/</span><span class="nb">get-pip</span><span class="p">.</span><span class="n">py</span> <span class="n">-o</span> <span class="nb">get-pip</span><span class="p">.</span><span class="n">py</span>
-<span class="n">python</span> <span class="nb">get-pip</span><span class="p">.</span><span class="n">py</span>
-<span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">-U</span> <span class="n">pip</span>
-</code></pre></div>
-
-
-<h2 id="system-fonts">System Fonts<a class="headerlink" href="#system-fonts" title="Permanent link">&para;</a></h2>
-<p>Here's another place where Scoop comes to the rescue to avoid clunky download and installs for system fonts!</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>note how <code>sudo</code> is being used to install the font as a global / system font - this obvisouly pops up a UAC prompt as it requires elevated provilege to install a system font...</p>
-</div>
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">bucket</span> <span class="n">add</span> <span class="n">nerd-fonts</span>
-<span class="n">sudo</span> <span class="n">scoop</span> <span class="n">install</span> <span class="n">Delugia-Nerd-Font-Complete</span>
-</code></pre></div>
-
-
-<h2 id="productivity-tools">Productivity Tools<a class="headerlink" href="#productivity-tools" title="Permanent link">&para;</a></h2>
-<h3 id="mkdocs">MkDocs<a class="headerlink" href="#mkdocs" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p><a href="https://www.mkdocs.org/">MkDocs</a> "Project documentation with Markdown"</p>
+<p><em>In Visual Studio Code, you can open an integrated terminal, initially starting at the root of your workspace. This can be convenient as you don't have to switch windows or alter the state of an existing terminal to perform a quick command-line task.</em></p>
+<p>from: <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a></p>
 </blockquote>
-<p>I use this for writing <strong>this site!</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">mkdocs</span>
-<span class="n">python</span> <span class="p">.\</span><span class="n">scoop</span><span class="p">\</span><span class="n">apps</span><span class="p">\</span><span class="n">python</span><span class="p">\</span><span class="n">current</span><span class="p">\</span><span class="n">Tools</span><span class="p">\</span><span class="n">scripts</span><span class="p">\</span><span class="n">win_add2path</span><span class="p">.</span><span class="n">py</span>
-</code></pre></div>
-
-
-<h4 id="install-the-custom-theme">Install the Custom Theme<a class="headerlink" href="#install-the-custom-theme" title="Permanent link">&para;</a></h4>
-<p>Using <a href="https://squidfunk.github.io/mkdocs-material/">Material theme</a> and dependencies for <a href="https://squidfunk.github.io/mkdocs-material/extensions/codehilite/">CodeHilite</a></p>
-<div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">mkdocs-material</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">pygments</span> <span class="c"># for source code syntax highlighting</span>
-</code></pre></div>
+<p>As <a href="https://stackoverflow.com/a/40489824/5351">this StackOverflow answer</a> explains you can change the default integrated Terminal by updating the setting <code>terminal.integrated.shell.windows</code>.</p>
+<p>I set mine to <code>C:/Program Files/Git/bin/bash.exe</code></p>
+<p>Now I can use <code>Ctrl-Shift-'</code> ( i.e. the default Key Binding to <code>workbennch.action.terminal.new</code> ) to open a new integrated terminal which will be running Git Bash and to which I can send commands from text editor windows, like this:</p>
+<p><img alt="Image" src="../media/git-bash-vscode.png?raw=true" /></p>
+<p>I also added a Terminal <a href="https://code.visualstudio.com/docs/getstarted/keybindings">Key Binding</a> for the F8 key to be bound to  <code>workbench.action.terminal.runSelectedText</code> so that whilst editing a shell (<code>.sh</code>) file in the editor, I could easily send the selected commands to my active terminal in VSCode.</p>
                 
                   
                 
@@ -759,7 +626,7 @@
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-02-05
+                        Last update: 2020-02-12
                       
                     </small>
                   </div>
@@ -781,7 +648,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../about/" title="About Me" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../scoop/" title="Scoop & Co" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -790,19 +657,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                About Me
+                Scoop & Co
               </span>
             </div>
           </a>
         
         
-          <a href="../git-bash/" title="Bash Shell on Windows" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../misc/" title="Miscellanous Notes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Bash Shell on Windows
+                Miscellanous Notes
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
