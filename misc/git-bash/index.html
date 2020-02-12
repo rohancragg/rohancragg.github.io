@@ -570,16 +570,17 @@ SH is Bourne Shell and so Bash is Born-again Bourne Shell</p>
 </div>
 <h2 id="cool-option-git-bash">Cool option - Git Bash<a class="headerlink" href="#cool-option-git-bash" title="Permanent link">&para;</a></h2>
 <h3 id="coolness-pt1-configuring-auto-complete">Coolness pt.1 - Configuring Auto-Complete<a class="headerlink" href="#coolness-pt1-configuring-auto-complete" title="Permanent link">&para;</a></h3>
+<p>First off, I need a .bashrc file, so I needed to make one as it didn't exist on my machine:</p>
 <div class="codehilite"><pre><span></span><code>touch ~/.bashrc
 </code></pre></div>
 
-<h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>** What is Git? **</p>
-<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
-<p>A version-control system is a tool for tracking changes in source code during software development. It is designed for coordinating work among a group of programmers, but it can be used to track changes in any set of files.</p>
+<p>** What is .bashrc? **
+According to ,<a href="https://www.maketecheasier.com/what-is-bashrc/">https://www.maketecheasier.com/what-is-bashrc/</a>&gt;
+<em>In order to load your preferences, bash runs the contents of the bashrc file at each launch. This shell script is found in each user’s home directory. It’s used to save and load your terminal preferences and environmental variables.</em></p>
 </div>
+<h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
 <p>Here's how to get auto-complete for <code>git</code> commands in Git Bash on Windows.</p>
 <div class="codehilite"><pre><span></span><code>mkdir ~/bash_completion.d   
 curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
@@ -589,19 +590,24 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <p>If using PowerShell (as I often do) then the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code></a> Module is a great option too.
 <div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">posh-git</span>
 </code></pre></div></p>
-<h4 id="kubectl-cli">kubectl CLI<a class="headerlink" href="#kubectl-cli" title="Permanent link">&para;</a></h4>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>** What is Kubectl? **</p>
-<p>Kubectl is a command line tool for controlling Kubernetes clusters.</p>
+<p>** What is Git? **</p>
+<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+<p>A version-control system is a tool for tracking changes in source code during software development. It is designed for coordinating work among a group of programmers, but it can be used to track changes in any set of files.</p>
 </div>
-<p>The kubectl completion script for Bash can be generated with the command <code>kubectl completion bash</code>.
-<a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations">from here:</a></p>
+<h4 id="kubectl-cli">kubectl CLI<a class="headerlink" href="#kubectl-cli" title="Permanent link">&para;</a></h4>
+<p>The kubectl completion script for Bash can be generated with the command <code>kubectl completion bash</code> <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#optional-kubectl-configurations">more details here</a></p>
 <p>Here's how to get auto-complete for <code>kubectl</code> commands in Git Bash on Windows.</p>
 <div class="codehilite"><pre><span></span><code>kubectl completion bash &gt; ~/bash_completion.d/kubectl
 <span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/kubectl&quot;</span> &gt;&gt; ~/.bashrc
 </code></pre></div>
 
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>** What is Kubectl? **</p>
+<p>Kubectl is a command line tool for controlling Kubernetes clusters.</p>
+</div>
 <h3 id="coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode">Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode<a class="headerlink" href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" title="Permanent link">&para;</a></h3>
 <p>Git Bash is a 'Linux-like' shell experience without going 'all the way' and dropping into the Windows Subsystem of Linx (WSL) Bash shell.</p>
 <p>Whilst there are times when I'll use WSL too, there are times when I want to be working 'in Windows' but using a more Bash-like experience. This is where Git Bash come to the rescue.</p>
