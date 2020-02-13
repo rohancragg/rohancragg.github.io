@@ -537,8 +537,13 @@
                 
                 
                 <h1 id="bash-shell-on-windows">Bash Shell on Windows<a class="headerlink" href="#bash-shell-on-windows" title="Permanent link">&para;</a></h1>
+<p>I'm primarily a <strong>Windows 10</strong> user and I primarily use <strong>PowerShell</strong> as my day-to-day command shell (<em><a href="https://github.com/powershell/powershell">Powershell Core</a> 6.2.4 at time of writing</em>). When I'm reading or editing code or scripts I primarily use <a href="https://code.visualstudio.com/"><strong>Visual Studio Code,</strong></a> so I often use the integrated terminal there, and so my daily default is PowerShell Core there too. For work unrelated to code or for more serious admin work I also tend to have a <a href="https://github.com/microsoft/terminal">Windows Terminal</a> open all day too.</p>
+<p><img alt="Visual Studio Code logo" src="../media/vscode-logo.png" /> or <img alt="Windows Terminal" src="../media/windows-terminal.png" /></p>
+<p>Even though I have Git for Windows (i.e. <a href="../scoop/"><code>scoop install git</code></a>) and therefore Git Bash is ready and waiting as the most obvious tool for using Git, I <strong>don't</strong> generally use Git Bash. I much prefer doing all my Git version control work in PowerShell with the very capable assistance of the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code> Module</a>.</p>
+<p><img alt="Posh-Git" src="https://github.com/dahlbyk/posh-git/wiki/images/PromptDefaultLong.png" /></p>
+<p>So make no mistake, I'm not advocating using Git Bash all the time. This aricle is about how to get a smooth experience for those times when I do find myself working in the Git Bash shell, as I'll explain below.</p>
 <p>I often find code snippets for automating things in my world (mostly Azure Cloud admin and development) tend to assume that I'm using a Linux shell of some sort and so the commands and scripts are in Bash.</p>
-<p>Specifically, I do lots of things with tools such as <a href="https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest">Azure CLI</a> and the examples often default to Bash syntax. While these are usually pretty simple to transpose into something that could exectue in PowerShell (see below) it's still annoying not to be able to copy and paste and execute the commands there and then, or add them to a script file for future use without first translating them to PowerShell.</p>
+<p>Specifically, I do lots of things with tools such as <a href="https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest">Azure CLI</a> and Kubectl (the CLI for Kubernetes) and the examples for these technologies often default to giving examples or scripts in Bash shell syntax. While these are usually pretty simple to transpose into something that could exectue in PowerShell (see below) it's still annoying not to be able to copy and paste and execute the commands there and then, or add them to a script file for future use without first translating them to PowerShell.</p>
 <h2 id="boring-option-transposing-between-bash-and-powershell">Boring option - Transposing between Bash and PowerShell<a class="headerlink" href="#boring-option-transposing-between-bash-and-powershell" title="Permanent link">&para;</a></h2>
 <p>Bash and PowerShell have some aspects of syntax in common (e.g. when referencing a variable like this: <code>$myVariable</code>)</p>
 <p>But there are some other things that differ (e.g. when assigning a variable like this):</p>
@@ -569,16 +574,17 @@
 SH is Bourne Shell and so Bash is Born-again Bourne Shell</p>
 </div>
 <h2 id="cool-option-git-bash">Cool option - Git Bash<a class="headerlink" href="#cool-option-git-bash" title="Permanent link">&para;</a></h2>
+<p>I already had a nice auto-complete experience with <code>posh-git</code> in PowerShell so I want the eperience to be just as good in Git Bash, and the auto-complete for Kubectl is one of my reasons for using Git Bash at all so configuring auto-complete is my first step!</p>
 <h3 id="coolness-pt1-configuring-auto-complete">Coolness pt.1 - Configuring Auto-Complete<a class="headerlink" href="#coolness-pt1-configuring-auto-complete" title="Permanent link">&para;</a></h3>
-<p>First off, I need a .bashrc file, so I needed to make one as it didn't exist on my machine:</p>
+<p>First off, I need a <code>.bashrc</code> file, so I needed to make one as it didn't exist on my machine:</p>
 <div class="codehilite"><pre><span></span><code>touch ~/.bashrc
 </code></pre></div>
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>** What is .bashrc? **
-According to ,<a href="https://www.maketecheasier.com/what-is-bashrc/">https://www.maketecheasier.com/what-is-bashrc/</a>&gt;
-<em>In order to load your preferences, bash runs the contents of the bashrc file at each launch. This shell script is found in each user’s home directory. It’s used to save and load your terminal preferences and environmental variables.</em></p>
+<p><strong>What is <code>.bashrc</code>?</strong></p>
+<p>According to <a href="https://www.maketecheasier.com/what-is-bashrc/">https://www.maketecheasier.com/what-is-bashrc/</a></p>
+<p><em>In order to load your preferences, bash runs the contents of the bashrc file at each launch. This shell script is found in each user’s home directory. It’s used to save and load your terminal preferences and environmental variables.</em></p>
 </div>
 <h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
 <p>Here's how to get auto-complete for <code>git</code> commands in Git Bash on Windows.</p>
@@ -592,7 +598,7 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>** What is Git? **</p>
+<p><strong>What is Git?</strong></p>
 <p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
 <p>A version-control system is a tool for tracking changes in source code during software development. It is designed for coordinating work among a group of programmers, but it can be used to track changes in any set of files.</p>
 </div>
@@ -605,7 +611,7 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>** What is Kubectl? **</p>
+<p><strong>What is Kubectl?</strong></p>
 <p>Kubectl is a command line tool for controlling Kubernetes clusters.</p>
 </div>
 <h3 id="coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode">Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode<a class="headerlink" href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" title="Permanent link">&para;</a></h3>
@@ -619,11 +625,15 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <p><em>In Visual Studio Code, you can open an integrated terminal, initially starting at the root of your workspace. This can be convenient as you don't have to switch windows or alter the state of an existing terminal to perform a quick command-line task.</em></p>
 <p>from: <a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a></p>
 </blockquote>
-<p>As <a href="https://stackoverflow.com/a/40489824/5351">this StackOverflow answer</a> explains you can change the default integrated Terminal by updating the setting <code>terminal.integrated.shell.windows</code>.</p>
-<p>I set mine to <code>C:/Program Files/Git/bin/bash.exe</code></p>
+<p>As <a href="https://stackoverflow.com/a/40489824/5351">this StackOverflow answer</a> explains you can change the default integrated terminal by updating the setting <code>terminal.integrated.shell.windows</code>.</p>
+<p>For now, I set mine to <code>C:/Program Files/Git/bin/bash.exe</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I probably won't keep this as a permanent change to my default integrated terminal, I've also been using the <a href="https://marketplace.visualstudio.com/items?itemName=Tyriar.shell-launcher">Shell Launcher extension</a> to open up the v arious shells that I tend to use in VSCode)</p>
+</div>
 <p>Now I can use <code>Ctrl-Shift-'</code> ( i.e. the default Key Binding to <code>workbennch.action.terminal.new</code> ) to open a new integrated terminal which will be running Git Bash and to which I can send commands from text editor windows, like this:</p>
 <p><img alt="Image" src="../media/git-bash-vscode.png?raw=true" /></p>
-<p>I also added a Terminal <a href="https://code.visualstudio.com/docs/getstarted/keybindings">Key Binding</a> for the F8 key to be bound to  <code>workbench.action.terminal.runSelectedText</code> so that whilst editing a shell (<code>.sh</code>) file in the editor, I could easily send the selected commands to my active terminal in VSCode.</p>
+<p>I also added a Terminal <a href="https://code.visualstudio.com/docs/getstarted/keybindings">Key Binding</a> for the F8 key to be bound to  <code>workbench.action.terminal.runSelectedText</code> so that whilst editing a shell (<code>.sh</code>) file in the editor, I can easily send the selected commands to my active terminal in VSCode.</p>
                 
                   
                 
@@ -633,7 +643,7 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-02-12
+                        Last update: 2020-02-13
                       
                     </small>
                   </div>
