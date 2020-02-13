@@ -538,7 +538,7 @@
                 
                 <h1 id="bash-shell-on-windows">Bash Shell on Windows<a class="headerlink" href="#bash-shell-on-windows" title="Permanent link">&para;</a></h1>
 <p>I'm primarily a <strong>Windows 10</strong> user and I primarily use <strong>PowerShell</strong> as my day-to-day command shell (<em><a href="https://github.com/powershell/powershell">Powershell Core</a> 6.2.4 at time of writing</em>). When I'm reading or editing code or scripts I primarily use <a href="https://code.visualstudio.com/"><strong>Visual Studio Code,</strong></a> so I often use the integrated terminal there, and so my daily default is PowerShell Core there too. For work unrelated to code or for more serious admin work I also tend to have a <a href="https://github.com/microsoft/terminal">Windows Terminal</a> open all day too.</p>
-<p><img alt="Visual Studio Code logo" src="../media/vscode-logo.png" /> or <img alt="Windows Terminal" src="../media/windows-terminal.png" /></p>
+<p>I <i class="fa fa-heart"></i> <img alt="Visual Studio Code logo" src="../media/vscode-logo.png" /> and I <i class="fa fa-heart"></i> <img alt="Windows Terminal" src="../media/windows-terminal.png" /> </p>
 <p>Even though I have Git for Windows (i.e. <a href="../scoop/"><code>scoop install git</code></a>) and therefore Git Bash is ready and waiting as the most obvious tool for using Git, I <strong>don't</strong> generally use Git Bash. I much prefer doing all my Git version control work in PowerShell with the very capable assistance of the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code> Module</a>.</p>
 <p><img alt="Posh-Git" src="https://github.com/dahlbyk/posh-git/wiki/images/PromptDefaultLong.png" /></p>
 <p>So make no mistake, I'm not advocating using Git Bash all the time. This aricle is about how to get a smooth experience for those times when I do find myself working in the Git Bash shell, as I'll explain below.</p>
@@ -587,7 +587,7 @@ SH is Bourne Shell and so Bash is Born-again Bourne Shell</p>
 <p><em>In order to load your preferences, bash runs the contents of the bashrc file at each launch. This shell script is found in each user’s home directory. It’s used to save and load your terminal preferences and environmental variables.</em></p>
 </div>
 <h4 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h4>
-<p>Here's how to get auto-complete for <code>git</code> commands in Git Bash on Windows.</p>
+<p>Here's how to get auto-complete for <i class="fa fa-git"></i> commands in Git Bash on Windows.</p>
 <div class="codehilite"><pre><span></span><code>mkdir ~/bash_completion.d   
 curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 <span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/git&quot;</span> &gt;&gt; ~/.bashrc
@@ -599,7 +599,7 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p><strong>What is Git?</strong></p>
-<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
+<p><i class="fa fa-git"></i> is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
 <p>A version-control system is a tool for tracking changes in source code during software development. It is designed for coordinating work among a group of programmers, but it can be used to track changes in any set of files.</p>
 </div>
 <h4 id="kubectl-cli">kubectl CLI<a class="headerlink" href="#kubectl-cli" title="Permanent link">&para;</a></h4>
