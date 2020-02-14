@@ -311,7 +311,7 @@
         
           <li class="md-nav__item">
   <a href="#install-scoop-and-base-set-of-tools" class="md-nav__link">
-    Install Scoop and base set of tools
+    Install scoop and base set of tools
   </a>
   
 </li>
@@ -326,6 +326,13 @@
           <li class="md-nav__item">
   <a href="#specifying-application-versions" class="md-nav__link">
     Specifying Application Versions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-applications" class="md-nav__link">
+    Updating Applications
   </a>
   
 </li>
@@ -513,7 +520,7 @@
         
           <li class="md-nav__item">
   <a href="#install-scoop-and-base-set-of-tools" class="md-nav__link">
-    Install Scoop and base set of tools
+    Install scoop and base set of tools
   </a>
   
 </li>
@@ -528,6 +535,13 @@
           <li class="md-nav__item">
   <a href="#specifying-application-versions" class="md-nav__link">
     Specifying Application Versions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-applications" class="md-nav__link">
+    Updating Applications
   </a>
   
 </li>
@@ -625,7 +639,7 @@
 ...You're familiar with UNIX tools, and you wish there were more of them on Windows</p>
 </blockquote>
 <p><em>from: <a href="https://github.com/lukesampson/scoop/wiki/Chocolatey-Comparison">https://github.com/lukesampson/scoop/wiki/Chocolatey-Comparison</a></em></p>
-<h3 id="install-scoop-and-base-set-of-tools">Install <code>Scoop</code> and base set of tools<a class="headerlink" href="#install-scoop-and-base-set-of-tools" title="Permanent link">&para;</a></h3>
+<h3 id="install-scoop-and-base-set-of-tools">Install <code>scoop</code> and base set of tools<a class="headerlink" href="#install-scoop-and-base-set-of-tools" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="nb">Invoke-Expression</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://get.scoop.sh&#39;</span><span class="p">)</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="n">sudo</span>
 <span class="n">sudo</span> <span class="n">scoop</span> <span class="n">install</span> <span class="n">7zip</span> <span class="n">git</span> <span class="p">-</span><span class="n">-global</span>
@@ -634,6 +648,7 @@
 <span class="n">scoop</span> <span class="n">install</span> <span class="n">nodejs</span> 
 </code></pre></div>
 
+<p><a href="https://github.com/ScoopInstaller/Main/blob/master/bucket/coreutils.json">coreutils</a> is a multi-tool package - <em>"a collection of GNU utilities such as bash, make, gawk and grep based on <a href="http://www.mingw.org/wiki/msys">MSYS</a>"</em></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>you can use the Unix tool <code>ls</code> after installing <code>coreutils</code> but you first need to remove the <code>PowerShell</code> alias already in place\
@@ -655,7 +670,7 @@
 </code></pre></div>
 
 <p>Then yet more handy tools I use:
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">azure-cli</span> <span class="n">dotnet-sdk</span> <span class="n">go</span> <span class="n">hugo</span> <span class="n">helm</span> <span class="n">pwsh</span>
+<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">azure-cli</span> <span class="n">dotnet-sdk</span> <span class="n">pwsh</span> <span class="n">go</span> <span class="n">kubectl</span> <span class="n">helm</span>
 <span class="c"># from extras bucket:</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="n">vcredist2019</span> <span class="n">linqpad</span> <span class="n">notepadplusplus</span> <span class="n">paint</span><span class="p">.</span><span class="n">net</span> <span class="n">windows-terminal</span>
 </code></pre></div></p>
@@ -683,8 +698,13 @@ or:
 <h3 id="specifying-application-versions">Specifying Application Versions<a class="headerlink" href="#specifying-application-versions" title="Permanent link">&para;</a></h3>
 <p>The <code>versions</code> bucket contains a way to obtain versions other than the latest version of an application. This is used in combination with <code>scoop reset</code> command to switch between versions of an app. Scoop creates a shim for each version and <code>scoop reset</code> switches the <code>current</code> shim between those versions.</p>
 <p>For example: <a href="https://github.com/lukesampson/scoop/wiki/Switching-Ruby-And-Python-Versions">Switching-Ruby-And-Python-Versions</a></p>
+<h3 id="updating-applications">Updating Applications<a class="headerlink" href="#updating-applications" title="Permanent link">&para;</a></h3>
+<p><code>scoop status</code> is used to display any available updates:</p>
+<p><img alt="scoop update" src="../media/scoop-update.png" /></p>
+<p>...and then <code>scoop update</code> is used to update one or more applications (in a single command if you like!).</p>
+<p><img alt="scoop update" src="../media/scoop-update2.png" /></p>
 <h2 id="common-pre-requisites">Common Pre-Requisites<a class="headerlink" href="#common-pre-requisites" title="Permanent link">&para;</a></h2>
-<p>The following is a set of common pre-requisites for installing tools and utilitied (e.g. the <code>pip</code> package manager for python tools):</p>
+<p>The following is a set of common pre-requisites for installing tools and utilities (e.g. the <code>pip</code> package manager for python tools):</p>
 <h3 id="python-and-pip"><code>Python</code> and <code>PIP</code><a class="headerlink" href="#python-and-pip" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">python</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="nb">curl</span>
@@ -726,7 +746,7 @@ or:
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-02-05
+                        Last update: 2020-02-14
                       
                     </small>
                   </div>
