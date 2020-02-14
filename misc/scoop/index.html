@@ -645,7 +645,6 @@
 <span class="n">sudo</span> <span class="n">scoop</span> <span class="n">install</span> <span class="n">7zip</span> <span class="n">git</span> <span class="p">-</span><span class="n">-global</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="nb">curl </span><span class="n">grep</span> <span class="n">sed</span> <span class="n">less</span> <span class="n">touch</span> <span class="n">nano</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="n">coreutils</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="n">nodejs</span> 
 </code></pre></div>
 
 <p><a href="https://github.com/ScoopInstaller/Main/blob/master/bucket/coreutils.json">coreutils</a> is a multi-tool package - <em>"a collection of GNU utilities such as bash, make, gawk and grep based on <a href="http://www.mingw.org/wiki/msys">MSYS</a>"</em></p>
@@ -670,9 +669,11 @@
 </code></pre></div>
 
 <p>Then yet more handy tools I use:
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">azure-cli</span> <span class="n">dotnet-sdk</span> <span class="n">pwsh</span> <span class="n">go</span> <span class="n">kubectl</span> <span class="n">helm</span>
+<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">pwsh</span> <span class="n">go</span> <span class="n">docker</span> <span class="n">kubectl</span> <span class="n">helm</span> <span class="n">make</span>
+<span class="n">scoop</span> <span class="n">install</span> <span class="n">azure-cli</span> <span class="n">dotnet-sdk</span> <span class="n">pulumi</span>
+<span class="n">scoop</span> <span class="n">install</span> <span class="n">nodejs</span> 
 <span class="c"># from extras bucket:</span>
-<span class="n">scoop</span> <span class="n">install</span> <span class="n">vcredist2019</span> <span class="n">linqpad</span> <span class="n">notepadplusplus</span> <span class="n">paint</span><span class="p">.</span><span class="n">net</span> <span class="n">windows-terminal</span>
+<span class="n">scoop</span> <span class="n">install</span> <span class="n">vcredist2019</span> <span class="n">linqpad</span> <span class="n">notepadplusplus</span> <span class="n">paint</span><span class="p">.</span><span class="n">net</span> <span class="n">windows-terminal</span> <span class="n">postman</span>
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -706,7 +707,7 @@ or:
 <h2 id="common-pre-requisites">Common Pre-Requisites<a class="headerlink" href="#common-pre-requisites" title="Permanent link">&para;</a></h2>
 <p>The following is a set of common pre-requisites for installing tools and utilities (e.g. the <code>pip</code> package manager for python tools):</p>
 <h3 id="python-and-pip"><code>Python</code> and <code>PIP</code><a class="headerlink" href="#python-and-pip" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">python</span>
+<div class="codehilite"><pre><span></span><code><span class="n">scoop</span> <span class="n">install</span> <span class="n">python</span> <span class="n">miniconda3</span>
 <span class="n">scoop</span> <span class="n">install</span> <span class="nb">curl</span>
 <span class="nb">curl </span><span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">bootstrap</span><span class="p">.</span><span class="n">pypa</span><span class="p">.</span><span class="n">io</span><span class="p">/</span><span class="nb">get-pip</span><span class="p">.</span><span class="n">py</span> <span class="n">-o</span> <span class="nb">get-pip</span><span class="p">.</span><span class="n">py</span>
 <span class="n">python</span> <span class="nb">get-pip</span><span class="p">.</span><span class="n">py</span>
