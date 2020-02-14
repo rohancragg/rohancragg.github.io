@@ -350,6 +350,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -364,6 +371,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-tldr-so-what" class="md-nav__link">
+    -&gt; TLDR; so what?!
+  </a>
   
 </li>
       
@@ -500,6 +514,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    Docker
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -514,6 +535,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-tldr-so-what" class="md-nav__link">
+    -&gt; TLDR; so what?!
+  </a>
   
 </li>
       
@@ -538,7 +566,7 @@
                 
                 <h1 id="bash-shell-on-windows">Bash Shell on Windows<a class="headerlink" href="#bash-shell-on-windows" title="Permanent link">&para;</a></h1>
 <p>I'm primarily a <strong>Windows 10</strong> user and I primarily use <strong>PowerShell</strong> as my day-to-day command shell (<em><a href="https://github.com/powershell/powershell">Powershell Core</a> 6.2.4 at time of writing</em>). When I'm reading or editing code or scripts I primarily use <a href="https://code.visualstudio.com/"><strong>Visual Studio Code,</strong></a> so I often use the integrated terminal there, and so my daily default is PowerShell Core there too. For work unrelated to code or for more serious admin work I also tend to have a <a href="https://github.com/microsoft/terminal">Windows Terminal</a> open all day too.</p>
-<p>I <i class="fa fa-heart"></i> <img alt="Visual Studio Code logo" src="../media/vscode-logo.png" /> and I <i class="fa fa-heart"></i> <img alt="Windows Terminal" src="../media/windows-terminal.png" /> </p>
+<p><i class="fa fa-heart"></i> <img alt="Visual Studio Code logo" src="../media/vscode-logo.png" /> <i class="fa fa-heart"></i> <img alt="Windows Terminal" src="../media/windows-terminal.png" /> <i class="fa fa-heart"></i></p>
 <p>Even though I have Git for Windows (i.e. <a href="../scoop/"><code>scoop install git</code></a>) and therefore Git Bash is ready and waiting as the most obvious tool for using Git, I <strong>don't</strong> generally use Git Bash. I much prefer doing all my Git version control work in PowerShell with the very capable assistance of the <a href="https://github.com/dahlbyk/posh-git"><code>posh-git</code> Module</a>.</p>
 <p><img alt="Posh-Git" src="https://github.com/dahlbyk/posh-git/wiki/images/PromptDefaultLong.png" /></p>
 <p>So make no mistake, I'm not advocating using Git Bash all the time. This article is about how to get a smooth experience for those times when I do find myself working in the Git Bash shell, as I'll explain below.</p>
@@ -614,6 +642,21 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <p><strong>What is Kubectl?</strong></p>
 <p>Kubectl is a command line tool for controlling Kubernetes clusters.</p>
 </div>
+<h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
+<p>There also Bash completion files <a href="https://github.com/docker/cli/tree/master/contrib/completion/bash">for Docker client</a>, <a href="https://docs.docker.com/machine/completion/">for Docker CLI</a> and <a href="https://docs.docker.com/compose/completion/">for Docker Compose</a></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Docker CLI:</span>
+curl -o ~/bash_completion.d/docker https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
+<span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/docker&quot;</span> &gt;&gt; ~/.bashrc
+
+<span class="c1"># Docker Machine</span>
+curl -o ~/bash_completion.d/docker-machine https://raw.githubusercontent.com/docker/machine/v0.16.0/contrib/completion/bash/docker-machine.bash
+<span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/docker-machine&quot;</span> &gt;&gt; ~/.bashrc
+
+<span class="c1"># Docker Compose:</span>
+curl -o ~/bash_completion.d/docker-compose https://raw.githubusercontent.com/docker/compose/1.25.3/contrib/completion/bash/docker-compose
+<span class="nb">echo</span> <span class="s2">&quot;source ~/bash_completion.d/docker-compose&quot;</span> &gt;&gt; ~/.bashrc
+</code></pre></div>
+
 <h3 id="coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode">Coolness pt.2 - Using Git Bash as an Integrated Shell in VSCode<a class="headerlink" href="#coolness-pt2-using-git-bash-as-an-integrated-shell-in-vscode" title="Permanent link">&para;</a></h3>
 <p>Git Bash is a 'Linux-like' shell experience without going 'all the way' and dropping into the Windows Subsystem of Linx (WSL) Bash shell.</p>
 <p>Whilst there are times when I'll use WSL too, there are times when I want to be working 'in Windows' but using a more Bash-like experience. This is where Git Bash come to the rescue.</p>
@@ -634,6 +677,18 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
 <p>Now I can use <code>Ctrl-Shift-'</code> ( i.e. the default Key Binding to <code>workbennch.action.terminal.new</code> ) to open a new integrated terminal which will be running Git Bash and to which I can send commands from text editor windows, like this:</p>
 <p><img alt="Image" src="../media/git-bash-vscode.png?raw=true" /></p>
 <p>I also added a Terminal <a href="https://code.visualstudio.com/docs/getstarted/keybindings">Key Binding</a> for the F8 key to be bound to  <code>workbench.action.terminal.runSelectedText</code> so that whilst editing a shell (<code>.sh</code>) file in the editor, I can easily send the selected commands to my active terminal in VSCode.</p>
+<h2 id="-tldr-so-what">-&gt; TLDR; so what?!<a class="headerlink" href="#-tldr-so-what" title="Permanent link">&para;</a></h2>
+<p>I already mentioned that I wouldn't normally use this as my preferred shell for Git. I'll only use it for Git when I happen to be in the Git Bash shell for some other reason; so what are those reasons?.</p>
+<p>I mentioned that I find this useful for <strong>Kubernetes</strong> admin work (i.e. <strong>kubectl</strong>). But it's also more natural than PowerShell for working with the <strong>Docker</strong> client.</p>
+<p>For example, if I want to copy and paste code samples for working with Docker such as the ones in the <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Dockerfile Best Practices page</a>. I'm not aware of a way to transpose the following command stright into PowerShell terminal:</p>
+<div class="codehilite"><pre><span></span><code>docker build -<span class="s">&lt;&lt;EOF</span>
+<span class="s">FROM busybox</span>
+<span class="s">RUN echo &quot;hello world&quot;</span>
+<span class="s">EOF</span>
+</code></pre></div>
+
+<p>...but I can do it in Git Bash no problem at all!:</p>
+<p><img alt="docker build" src="../media/docker-build.png" /></p>
                 
                   
                 
@@ -643,7 +698,7 @@ curl -o ~/bash_completion.d/git https://raw.githubusercontent.com/git/git/master
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-02-13
+                        Last update: 2020-02-14
                       
                     </small>
                   </div>
