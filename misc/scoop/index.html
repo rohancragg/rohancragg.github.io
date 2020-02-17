@@ -404,6 +404,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#powersession" class="md-nav__link">
+    PowerSession
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -617,6 +624,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#powersession" class="md-nav__link">
+    PowerSession
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -756,6 +770,31 @@ or:
 <div class="codehilite"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">mkdocs-material</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pygments</span> <span class="c"># for source code syntax highlighting</span>
 </code></pre></div></p>
+<h3 id="powersession">PowerSession<a class="headerlink" href="#powersession" title="Permanent link">&para;</a></h3>
+<p>This a version of <a href="https://asciinema.org/">asciinema</a> for recording and re-playing PowerShell terminal sessions. Once recorded you upload the recording and share it with the world!</p>
+<details><summary>What is <code>asiinema</code> and how do I get it?!</summary><p>If you've never used asciinema before and you want to share a demo of something at a terminal then you'll love this tool. </p>
+<p>Simply go to <a href="https://asciinema.org/">https://asciinema.org/</a> click on <strong>Log in / Sign up</strong> | Enter an email address | Click on the linhk in the confirmation email | choose a username</p>
+<p>Apparently tt's based on Windows Pseudo Console (ConPTY).</p>
+</details>
+<div class="codehilite"><pre><span></span><code><span class="c"># Installation</span>
+<span class="n">scoop</span> <span class="n">install</span> <span class="n">PowerSession</span>
+
+<span class="c"># Usage: Log in on the machine where you want to make a recording</span>
+<span class="n">Powersession</span> <span class="n">auth</span>
+<span class="c"># ... copy the URL you&#39;re given and paste it into your browser as instructed</span>
+
+<span class="c"># Record a Terminal session (it will open a new session for you)</span>
+<span class="n">PowerSession</span> <span class="n">rec</span> <span class="n">a</span><span class="p">.</span><span class="n">txt</span>
+
+<span class="c"># Play back the recording to check that it&#39;s OK to upload</span>
+<span class="n">PowerSession</span> <span class="n">play</span> <span class="n">a</span><span class="p">.</span><span class="n">txt</span>
+
+<span class="c"># If it&#39;s ok then</span>
+<span class="n">PowerSession</span> <span class="n">upload</span> <span class="n">a</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
+
+<p>An example of an uploaded recording looks like this!</p>
+<script id="asciicast-302157" src="https://asciinema.org/a/302157.js" async></script>
                 
                   
                 
