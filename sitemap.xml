@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://rohancragg.github.io/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://rohancragg.github.io/about/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/about/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://rohancragg.github.io/misc/scoop/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/misc/scoop/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://rohancragg.github.io/misc/git-bash/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/misc/git-bash/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://rohancragg.github.io/misc/misc/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/misc/misc/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://rohancragg.github.io/aks/domains/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/aks/domains/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://rohancragg.github.io/aks/create-tls-secret/</loc>
-     <lastmod>2020-02-17</lastmod>
+     <loc>https://rohancragg.co.uk/aks/create-tls-secret/</loc>
+     <lastmod>2020-02-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
