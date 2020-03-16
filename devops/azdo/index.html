@@ -366,8 +366,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuring-an-agent-on-ubunutu-server" class="md-nav__link">
-    Configuring an agent on Ubunutu Server
+  <a href="#configuring-an-agent-on-ubuntu-server" class="md-nav__link">
+    Configuring an agent on Ubuntu Server
   </a>
   
     <nav class="md-nav">
@@ -508,8 +508,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuring-an-agent-on-ubunutu-server" class="md-nav__link">
-    Configuring an agent on Ubunutu Server
+  <a href="#configuring-an-agent-on-ubuntu-server" class="md-nav__link">
+    Configuring an agent on Ubuntu Server
   </a>
   
     <nav class="md-nav">
@@ -583,8 +583,8 @@
                 <h2 id="self-hosted-agents">Self-Hosted Agents<a class="headerlink" href="#self-hosted-agents" title="Permanent link">&para;</a></h2>
 <p>When my colleagues needed a build agent that could communicate with Azure Resources (such as Storage Accounts) inside of a private Virtual Network then the only way to do this without whitelisting a very large set of public IP address ranges (i.e. Azure Datacenter addresses) was to have a Virtual Machine running inside the same private network to which Azure DevOps would schedule build jobs.</p>
 <p>Azure DevOps provides a way for you to run your own Build Agents called <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops"><strong>Self-hosted Agents</strong></a>.</p>
-<h3 id="configuring-an-agent-on-ubunutu-server">Configuring an agent on Ubunutu Server<a class="headerlink" href="#configuring-an-agent-on-ubunutu-server" title="Permanent link">&para;</a></h3>
-<p>When I learned that the requirement was to build Python wheels to be deployed. I guessed that a Linux Virtual Machine should suffice and be a bit less costly to run that a Windows Server Virtual Machine. I elected to deploy a Ubunutu Server.</p>
+<h3 id="configuring-an-agent-on-ubuntu-server">Configuring an agent on Ubuntu Server<a class="headerlink" href="#configuring-an-agent-on-ubuntu-server" title="Permanent link">&para;</a></h3>
+<p>When I learned that the requirement was to build Python wheels to be deployed. I guessed that a Linux Virtual Machine should suffice and be a bit less costly to run that a Windows Server Virtual Machine. I elected to deploy a Ubuntu Server.</p>
 <p>When I looked into this I found a few blog posts in addition to <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops">the official documentation</a>, but all the articles specified using a desktop browser to download the Agent configuration script, and this seemed very odd for Linux where I'd assumed the default mode would be to do everything at the command line so I thought I'd post here how I acheived all of this with just an SSH terminal.</p>
 <h4 id="step-1-create-an-account-under-which-to-run-the-agent">Step 1. Create an account under which to run the Agent<a class="headerlink" href="#step-1-create-an-account-under-which-to-run-the-agent" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code>sudo adduser agentsvc
