@@ -710,12 +710,13 @@ sudo apt-get install git
 </code></pre></div>
 
 <h3 id="step-3-install-and-configure-the-agent">Step 3. Install and configure the Agent<a class="headerlink" href="#step-3-install-and-configure-the-agent" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>mkdir Downloads <span class="o">&amp;&amp;</span> <span class="nb">cd</span> Downloads
-curl -o vsts-agent-linux-x64-2.165.0.tar.gz https://vstsagentpackage.azureedge.net/agent/2.165.0/vsts-agent-linux-x64-2.165.0.tar.gz
-<span class="nb">cd</span> .. 
-mkdir myagent <span class="o">&amp;&amp;</span> <span class="nb">cd</span> myagent
-tar zxvf ~/Downloads/vsts-agent-linux-x64-2.165.0.tar.gz
-rm -rf ~/Downloads
+<div class="codehilite"><pre><span></span><code>mkdir -p <span class="nv">$HOME</span>/Downloads <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$HOME</span>/Downloads
+curl -o <span class="nv">$HOME</span>/Downloads/vsts-agent-linux-x64-2.165.0.tar.gz https://vstsagentpackage.azureedge.net/agent/2.165.0/vsts-agent-linux-x64-2.165.0.tar.gz
+<span class="nb">cd</span> <span class="nv">$HOME</span>
+mkdir -p <span class="nv">$HOME</span>/myagent/ <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$HOME</span>/myagent/
+tar zxvf <span class="nv">$HOME</span>/Downloads/vsts-agent-linux-x64-2.165.0.tar.gz
+rm -rf <span class="nv">$HOME</span>/Downloads
+<span class="nb">cd</span> <span class="nv">$HOME</span>/myagent
 sudo ./bin/installdependencies.sh
 ./config.sh
 </code></pre></div>
@@ -726,10 +727,10 @@ sudo ./bin/installdependencies.sh
 </details>
 <h3 id="step-4-run-as-a-service">Step 4. Run as a Service<a class="headerlink" href="#step-4-run-as-a-service" title="Permanent link">&para;</a></h3>
 <p>Now we usually want to run the agent as a service (i.e. have it run continuously waiting for job to be scheduled) so we need to do the following, <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops#run-as-a-systemd-service">as documented here</a>.</p>
-<p><strong><em>from the myagent/ directory</em></strong>:
-<div class="codehilite"><pre><span></span><code>sudo ./svc.sh install
-sudo ./svc.sh start
-</code></pre></div></p>
+<div class="codehilite"><pre><span></span><code>sudo <span class="nv">$HOME</span>/myagent/svc.sh install
+sudo <span class="nv">$HOME</span>/myagent/svc.sh start
+</code></pre></div>
+
 <hr />
 <h2 id="installing-capabilities">Installing Capabilities<a class="headerlink" href="#installing-capabilities" title="Permanent link">&para;</a></h2>
 <h3 id="python-tools">Python Tools<a class="headerlink" href="#python-tools" title="Permanent link">&para;</a></h3>
