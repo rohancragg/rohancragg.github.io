@@ -13,7 +13,7 @@
         <meta name="description" content="A Material Design theme for MkDocs">
       
       
-        <link rel="canonical" href="https://rohancragg.co.uk/devops/azdo/">
+        <link rel="canonical" href="https://rohancragg.co.uk/devops/azdo-self-hosted-build-agents/">
       
       
         <meta name="author" content="Rohan Cragg">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Azure DevOps - What I learned today (@rohancragg)</title>
+        <title>Azure DevOps - Self-Hosted Build Agents - What I learned today (@rohancragg)</title>
       
     
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Azure DevOps
+                Azure DevOps - Self-Hosted Build Agents
               
             </span>
           
@@ -342,11 +342,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Azure DevOps
+        Azure DevOps - Self-Hosted Build Agents
       </label>
     
-    <a href="./" title="Azure DevOps" class="md-nav__link md-nav__link--active">
-      Azure DevOps
+    <a href="./" title="Azure DevOps - Self-Hosted Build Agents" class="md-nav__link md-nav__link--active">
+      Azure DevOps - Self-Hosted Build Agents
     </a>
     
       
@@ -362,23 +362,22 @@
     Self-Hosted Agents
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-an-agent-on-ubuntu-server" class="md-nav__link">
     Configuring an agent on Ubuntu Server
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#step-0-pre-requisites" class="md-nav__link">
     Step 0. Pre-requisites
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#step-1-create-an-account-under-which-to-run-the-agent" class="md-nav__link">
@@ -404,6 +403,48 @@
           <li class="md-nav__item">
   <a href="#step-4-run-as-a-service" class="md-nav__link">
     Step 4. Run as a Service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-capabilities" class="md-nav__link">
+    Installing Capabilities
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-tools" class="md-nav__link">
+    Python Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-tool-cache-directory" class="md-nav__link">
+    1. Create Tool Cache Directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-python" class="md-nav__link">
+    2. Install Python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-conda" class="md-nav__link">
+    3. Install Conda
   </a>
   
 </li>
@@ -511,23 +552,22 @@
     Self-Hosted Agents
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-an-agent-on-ubuntu-server" class="md-nav__link">
     Configuring an agent on Ubuntu Server
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#step-0-pre-requisites" class="md-nav__link">
     Step 0. Pre-requisites
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#step-1-create-an-account-under-which-to-run-the-agent" class="md-nav__link">
@@ -553,6 +593,48 @@
           <li class="md-nav__item">
   <a href="#step-4-run-as-a-service" class="md-nav__link">
     Step 4. Run as a Service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-capabilities" class="md-nav__link">
+    Installing Capabilities
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-tools" class="md-nav__link">
+    Python Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-tool-cache-directory" class="md-nav__link">
+    1. Create Tool Cache Directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-python" class="md-nav__link">
+    2. Install Python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-conda" class="md-nav__link">
+    3. Install Conda
   </a>
   
 </li>
@@ -589,10 +671,10 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/devops/azdo.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/devops/azdo-self-hosted-build-agents.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Azure DevOps</h1>
+                  <h1>Azure DevOps - Self-Hosted Build Agents</h1>
                 
                 <h2 id="self-hosted-agents">Self-Hosted Agents<a class="headerlink" href="#self-hosted-agents" title="Permanent link">&para;</a></h2>
 <details class="info"><summary>About Build Agents</summary><p>This new Learning Module has some very good explanations:</p>
@@ -605,7 +687,7 @@
 </details>
 <p>When my colleagues needed a build agent that could communicate with Azure Resources (such as Storage Accounts) inside of a private Virtual Network then the only way to do this without whitelisting a very large set of public IP address ranges (i.e. Azure Datacenter addresses) was to have a Virtual Machine running inside the same private network to which Azure DevOps would schedule build jobs.</p>
 <p>Azure DevOps provides a way for you to run your own Build Agents called <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops"><strong>Self-hosted Agents</strong></a>.</p>
-<h3 id="configuring-an-agent-on-ubuntu-server">Configuring an agent on Ubuntu Server<a class="headerlink" href="#configuring-an-agent-on-ubuntu-server" title="Permanent link">&para;</a></h3>
+<h2 id="configuring-an-agent-on-ubuntu-server">Configuring an agent on Ubuntu Server<a class="headerlink" href="#configuring-an-agent-on-ubuntu-server" title="Permanent link">&para;</a></h2>
 <p>When I learned that the requirement was to build Python wheels to be deployed. I guessed that a Linux Virtual Machine should suffice and be a bit less costly to run that a Windows Server Virtual Machine. I elected to deploy a Ubuntu Server.</p>
 <p>When I looked into this I found a few blog posts in addition to <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops">the official documentation</a>, but all the articles specified using a desktop browser to download the Agent configuration script, and this seemed very odd for Linux where I'd assumed the default mode would be to do everything at the command line so I thought I'd post here how I acheived all of this with just an SSH terminal.</p>
 <h3 id="step-0-pre-requisites">Step 0. Pre-requisites<a class="headerlink" href="#step-0-pre-requisites" title="Permanent link">&para;</a></h3>
@@ -613,7 +695,7 @@
 <div class="codehilite"><pre><span></span><code>sudo apt-get update
 </code></pre></div>
 
-<h4 id="step-1-create-an-account-under-which-to-run-the-agent">Step 1. Create an account under which to run the Agent<a class="headerlink" href="#step-1-create-an-account-under-which-to-run-the-agent" title="Permanent link">&para;</a></h4>
+<h3 id="step-1-create-an-account-under-which-to-run-the-agent">Step 1. Create an account under which to run the Agent<a class="headerlink" href="#step-1-create-an-account-under-which-to-run-the-agent" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo adduser agentsvc
 sudo usermod -aG sudo agentsvc
 <span class="c1"># test it</span>
@@ -621,13 +703,13 @@ su - agentsvc
 sudo ls -la /root
 </code></pre></div>
 
-<h4 id="step-2-install-git2">Step 2. Install Git2<a class="headerlink" href="#step-2-install-git2" title="Permanent link">&para;</a></h4>
+<h3 id="step-2-install-git2">Step 2. Install Git2<a class="headerlink" href="#step-2-install-git2" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get install git
 </code></pre></div>
 
-<h4 id="step-3-install-and-configure-the-agent">Step 3. Install and configure the Agent<a class="headerlink" href="#step-3-install-and-configure-the-agent" title="Permanent link">&para;</a></h4>
+<h3 id="step-3-install-and-configure-the-agent">Step 3. Install and configure the Agent<a class="headerlink" href="#step-3-install-and-configure-the-agent" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>mkdir Downloads <span class="o">&amp;&amp;</span> <span class="nb">cd</span> Downloads
 curl -o vsts-agent-linux-x64-2.165.0.tar.gz https://vstsagentpackage.azureedge.net/agent/2.165.0/vsts-agent-linux-x64-2.165.0.tar.gz
 <span class="nb">cd</span> .. 
@@ -642,11 +724,59 @@ sudo ./bin/installdependencies.sh
 <p><img alt="Image" src="../media/agent-config-sh.png" /></p>
 <details class="tip all-in-one script"><summary>Tip</summary><p>There's an even more slick way to do the above steps here: <a href="https://github.com/MicrosoftDocs/mslearn-azure-pipelines-build-agent/blob/master/build-agent.sh">https://github.com/MicrosoftDocs/mslearn-azure-pipelines-build-agent/blob/master/build-agent.sh</a></p>
 </details>
-<h4 id="step-4-run-as-a-service">Step 4. Run as a Service<a class="headerlink" href="#step-4-run-as-a-service" title="Permanent link">&para;</a></h4>
+<h3 id="step-4-run-as-a-service">Step 4. Run as a Service<a class="headerlink" href="#step-4-run-as-a-service" title="Permanent link">&para;</a></h3>
 <p>Now we usually want to run the agent as a service (i.e. have it run continuously waiting for job to be scheduled) so we need to do the following, <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops#run-as-a-systemd-service">as documented here</a>.</p>
 <p><strong><em>from the myagent/ directory</em></strong>:
 <div class="codehilite"><pre><span></span><code>sudo ./svc.sh install
 sudo ./svc.sh start
+</code></pre></div></p>
+<hr />
+<h2 id="installing-capabilities">Installing Capabilities<a class="headerlink" href="#installing-capabilities" title="Permanent link">&para;</a></h2>
+<h3 id="python-tools">Python Tools<a class="headerlink" href="#python-tools" title="Permanent link">&para;</a></h3>
+<p>The following is the sterling work of my colleague <a href="https://twitter.com/chyuibacca">https://twitter.com/chyuibacca</a>.</p>
+<p>The aim was to install the required Python tools onto the agent so that we could run a Pipeline that includes the following Tasks:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/use-python-version?view=azure-devops">UsePythonVersion@0</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/package/pip-authenticate?view=azure-devops">PipAuthenticate@1</a></li>
+</ul>
+<p>As well as a number of script tasks that use the <a href="https://docs.microsoft.com/en-us/python/api/overview/azure/ml/install?view=azure-ml-py">Azure Machine Learning SDK for Python</a> - also known as <code>azureml-sdk</code> (which gets installed via PyPI from <a href="https://pypi.org/project/azureml-defaults/">https://pypi.org/project/azureml-defaults/</a>)</p>
+<h4 id="1-create-tool-cache-directory">1. Create Tool Cache Directory<a class="headerlink" href="#1-create-tool-cache-directory" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code>mkdir -p <span class="nv">$HOME</span>/myagent/_work/_tool
+</code></pre></div>
+
+<h4 id="2-install-python">2. Install Python<a class="headerlink" href="#2-install-python" title="Permanent link">&para;</a></h4>
+<p>Install tools required to build Python from source:
+<div class="codehilite"><pre><span></span><code>sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev  libncursesw5-dev xz-utils tk-dev
+</code></pre></div></p>
+<p>Install required Python version (replace <code>x.y.z</code> with the required Python version, e.g. 3.6.7):
+<div class="codehilite"><pre><span></span><code>wget https://www.python.org/ftp/python/3.6.7/Python-x.y.z.tgz
+tar -xzf Python-x.y.z.tgz
+<span class="nb">cd</span> Python-x.y.z
+
+mkdir -p <span class="nv">$HOME</span>/myagent/_work/_tool/Python/x.y.z/x64
+./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>/myagent/_work/_tool/Python/x.y.z/x64/ --enable-optimizations --with-ensurepip<span class="o">=</span>install
+make -j <span class="m">8</span>
+sudo make altinstall
+touch <span class="nv">$HOME</span>/myagent/_work/_tool/Python/x.y.z/x64.complete
+</code></pre></div></p>
+<p>If required, create major/ major.minor version link to latest Python version:
+<div class="codehilite"><pre><span></span><code>ln -s <span class="nv">$HOME</span>/myagent/_work/_tool/Python/x/x64 <span class="nv">$HOME</span>/myagent/_work/_tool/Python/x.y.z/x64
+ln -s <span class="nv">$HOME</span>/myagent/_work/_tool/Python/x.y/x64 <span class="nv">$HOME</span>/myagent/_work/_tool/Python/x.y.z/x64
+</code></pre></div></p>
+<h4 id="3-install-conda">3. Install Conda<a class="headerlink" href="#3-install-conda" title="Permanent link">&para;</a></h4>
+<p>Install the latest Conda release:
+<div class="codehilite"><pre><span></span><code>mkdir -p <span class="nv">$HOME</span>/myagent/_work/_tool/miniconda
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash ./Miniconda3-latest-Linux-x86_64.sh
+</code></pre></div>
+Note: When prompted, select the installation directory as <code>/home/agentsvc/myagent/_work/_tool/minconda</code></p>
+<p>Initialise Conda:
+<div class="codehilite"><pre><span></span><code><span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>/home/agentsvc/myagent/_work/_tool/miniconda3/bin/conda shell.bash hook<span class="k">)</span><span class="s2">&quot;</span>
+conda init bash
+conda config --set auto_activate_base <span class="nb">false</span>
+</code></pre></div></p>
+<p>Make Conda available to the agent by adding <code>/home/agentsvc/myagent/_work/_tool/miniconda3/condabin</code> to the PATH agent environment variable:
+<div class="codehilite"><pre><span></span><code>vi $HOME/myagent/.path
 </code></pre></div></p>
                 
                   
@@ -657,7 +787,7 @@ sudo ./svc.sh start
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-03-16
+                        Last update: 2020-03-17
                       
                     </small>
                   </div>
@@ -671,9 +801,9 @@ sudo ./svc.sh start
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = "https://rohancragg.co.uk/devops/azdo/";
+      this.page.url = "https://rohancragg.co.uk/devops/azdo-self-hosted-build-agents/";
       this.page.identifier =
-        "/devops/azdo/";
+        "/devops/azdo-self-hosted-build-agents/";
     };
     (function() {
       var d = document, s = d.createElement("script");
