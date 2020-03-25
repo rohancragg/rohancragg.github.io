@@ -13,7 +13,7 @@
         <meta name="description" content="A Material Design theme for MkDocs">
       
       
-        <link rel="canonical" href="https://rohancragg.co.uk/aks/create-tls-secret/">
+        <link rel="canonical" href="https://rohancragg.co.uk/compute/patching-devtestlabs/">
       
       
         <meta name="author" content="Rohan Cragg">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Create a TLS Secret - What I learned today (@rohancragg)</title>
+        <title>VM Patching in DevTest Labs</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#how-to-create-a-tls-secret" tabindex="0" class="md-skip">
+      <a href="#vm-patching-in-devtest-labs" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Create a TLS Secret
+                VM Patching in DevTest Labs
               
             </span>
           
@@ -182,6 +182,17 @@
     
     <div class="md-container">
       
+        
+          
+
+
+  
+
+<div class="md-hero md-hero--expand" data-md-component="hero">
+  <div class="md-hero__inner md-grid">
+    Keeping Virtual Machines Patched (DevTest Labs edition)
+  </div>
+</div>
         
       
       
@@ -312,10 +323,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       DevOps
@@ -343,56 +356,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../../compute/patching-devtestlabs/" title="VM Patching in DevTest Labs" class="md-nav__link">
-      VM Patching in DevTest Labs
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
-    
-    <label class="md-nav__link" for="nav-5">
-      Kubernetes
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        Kubernetes
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../domains/" title="Clusters and Domains" class="md-nav__link">
-      Clusters and Domains
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -404,11 +367,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Create a TLS Secret
+        VM Patching in DevTest Labs
       </label>
     
-    <a href="./" title="Create a TLS Secret" class="md-nav__link md-nav__link--active">
-      Create a TLS Secret
+    <a href="./" title="VM Patching in DevTest Labs" class="md-nav__link md-nav__link--active">
+      VM Patching in DevTest Labs
     </a>
     
       
@@ -422,51 +385,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-are-we-trying-to-achieve" class="md-nav__link">
-    What are we trying to achieve?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-the-right-files" class="md-nav__link">
-    Getting the right files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-the-tls-secret-in-kubernetes" class="md-nav__link">
-    Creating the TLS Secret in Kubernetes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-notes" class="md-nav__link">
-    Additional Notes
+  <a href="#about-devtest-labs" class="md-nav__link">
+    About DevTest Labs
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#how-to-validate-a-key" class="md-nav__link">
-    How to validate a key
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#where-did-my-pks-file-come-from" class="md-nav__link">
-    Where did my PKS file come from?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-get-the-client-certificate-without-the-full-ca-chain" class="md-nav__link">
-    How to get the client certificate (without the full CA chain)
+  <a href="#secure-environment" class="md-nav__link">
+    Secure Environment
   </a>
   
 </li>
@@ -477,9 +405,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#updates" class="md-nav__link">
-    Updates
+  <a href="#tools-for-data-science" class="md-nav__link">
+    Tools for Data Science
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-automation-update-management" class="md-nav__link">
+    Azure Automation - Update Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-pre-and-post-scripts-to-prepare-machines-for-patching" class="md-nav__link">
+    Using pre and post-scripts to prepare machines for patching
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -497,6 +445,54 @@
   
 </nav>
     
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Kubernetes
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aks/domains/" title="Clusters and Domains" class="md-nav__link">
+      Clusters and Domains
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aks/create-tls-secret/" title="Create a TLS Secret" class="md-nav__link">
+      Create a TLS Secret
+    </a>
   </li>
 
         
@@ -526,51 +522,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-are-we-trying-to-achieve" class="md-nav__link">
-    What are we trying to achieve?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-the-right-files" class="md-nav__link">
-    Getting the right files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-the-tls-secret-in-kubernetes" class="md-nav__link">
-    Creating the TLS Secret in Kubernetes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-notes" class="md-nav__link">
-    Additional Notes
+  <a href="#about-devtest-labs" class="md-nav__link">
+    About DevTest Labs
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#how-to-validate-a-key" class="md-nav__link">
-    How to validate a key
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#where-did-my-pks-file-come-from" class="md-nav__link">
-    Where did my PKS file come from?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-get-the-client-certificate-without-the-full-ca-chain" class="md-nav__link">
-    How to get the client certificate (without the full CA chain)
+  <a href="#secure-environment" class="md-nav__link">
+    Secure Environment
   </a>
   
 </li>
@@ -581,9 +542,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#updates" class="md-nav__link">
-    Updates
+  <a href="#tools-for-data-science" class="md-nav__link">
+    Tools for Data Science
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-automation-update-management" class="md-nav__link">
+    Azure Automation - Update Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-pre-and-post-scripts-to-prepare-machines-for-patching" class="md-nav__link">
+    Using pre and post-scripts to prepare machines for patching
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -609,98 +590,107 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/aks/create-tls-secret.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/compute/patching-devtestlabs.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="how-to-create-a-tls-secret">How to Create a TLS Secret<a class="headerlink" href="#how-to-create-a-tls-secret" title="Permanent link">&para;</a></h1>
-<p>I followed the command-line method (the first method) explained in this article <a href="https://shocksolution.com/2018/12/14/creating-kubernetes-secrets-using-tls-ssl-as-an-example/">Creating Kubernetes Secrets Using TLS/SSL as an Example</a> - i.e. rather than using the second (YAML file) method.</p>
-<p>In order to do this I needed two files in the correct format.</p>
-<p>There are multiple formats that certificate and associated key files can be in (they can even be combined into a single file). In order to create a Kubernetes TLS secret I needed to ascertain the right ones to use.</p>
-<p>I was provided with a <code>.pks</code> file and needed to work out how to generate the correct artifacts from it. All I knew from the above article was that I needed a <code>.crt</code> and a <code>.key</code> file and at first I wasn't sure what these were.</p>
-<h2 id="what-are-we-trying-to-achieve">What are we trying to achieve?<a class="headerlink" href="#what-are-we-trying-to-achieve" title="Permanent link">&para;</a></h2>
-<p>I needed obtain a TLS certificate and create a TLS Secret object in Kubernetes so that an Ingress resource could refer to the Secret in order that the certificate presented by the NGINX Ingress would look like this when visiting the associated Service in a web browser:</p>
-<p><img alt="Image" src="../media/cert-path.png?raw=true" /></p>
-<p><em>(i.e. the TLS/HTTPS certificate should include the CA chain.)</em></p>
-<h2 id="getting-the-right-files">Getting the right files<a class="headerlink" href="#getting-the-right-files" title="Permanent link">&para;</a></h2>
-<p>To get an encrypted private key:</p>
-<blockquote>
-<p>openssl pkcs12 -in domain.pfx -nocerts -out domain.enc.key</p>
-</blockquote>
-<p>To get an un-encrypted private key file</p>
-<blockquote>
-<p>openssl rsa -in domain.enc.key -outform PEM -out domain.key</p>
-</blockquote>
-<p><em><strong>Note:</strong> be sure to delete this file once uploaded to the cluster so that you don't have an un-encrypted secret on your local machine</em></p>
-<p>To get the certificate file</p>
-<blockquote>
-<p>openssl pkcs12 -in domain.pfx -nodes -nokeys -nomac -out domain.crt</p>
-</blockquote>
-<p>The <strong>domain.crt</strong> file looks like this</p>
-<p><img alt="Image" src="../media/domain.crt.png?raw=true" /></p>
-<p>In my case it contains the full CA chain and so, in my case, there are three certificates each enclosed in <code>BEGIN CERTIFICATE</code> and <code>END CERTIFICATE</code> delimiters:</p>
-<div class="codehilite"><pre><span></span><code><span class="go">-----BEGIN CERTIFICATE-----</span>
-<span class="gp">#</span><span class="c1">###############################################################</span>
-<span class="gp">#</span><span class="c1">###############################################################</span>
-<span class="go">-----END CERTIFICATE-----</span>
-</code></pre></div>
-
-<h2 id="creating-the-tls-secret-in-kubernetes">Creating the TLS Secret in Kubernetes<a class="headerlink" href="#creating-the-tls-secret-in-kubernetes" title="Permanent link">&para;</a></h2>
-<p>Create Kubernetes TLS Secret:</p>
-<blockquote>
-<p>kubectl create secret tls tlscert --key="tls.key" --cert="tls.crt"</p>
-</blockquote>
-<hr />
-<h2 id="additional-notes">Additional Notes<a class="headerlink" href="#additional-notes" title="Permanent link">&para;</a></h2>
-<h3 id="how-to-validate-a-key">How to validate a key<a class="headerlink" href="#how-to-validate-a-key" title="Permanent link">&para;</a></h3>
-<p><em>This works for both encrypted or un-encrypted keys</em>:</p>
-<blockquote>
-<p>openssl rsa -check -in domain.enc.key</p>
-</blockquote>
-<p>or</p>
-<blockquote>
-<p>openssl rsa -check -in domain.key</p>
-</blockquote>
-<p>You should see the message 'RSA key ok':</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">$</span> openssl rsa -check -in domain.enc.key
-<span class="go">Enter pass phrase for domain.enc.pem:</span>
-<span class="go">RSA key ok</span>
-<span class="go">writing RSA key</span>
-<span class="go">-----BEGIN RSA PRIVATE KEY-----</span>
-<span class="gp">#</span><span class="c1">###############################################################</span>
-<span class="gp">#</span><span class="c1">###############################################################</span>
-</code></pre></div>
-
-<h3 id="where-did-my-pks-file-come-from">Where did my PKS file come from?<a class="headerlink" href="#where-did-my-pks-file-come-from" title="Permanent link">&para;</a></h3>
-<p>I was provided with a <code>.pks</code> ( <code>PKCS#12</code> ) file which had been created with the following command</p>
-<blockquote>
-<p>openssl pkcs12 -export -out domain.pfx -inkey domain.rsa -in domain.cer -certfile CAbundle.txt</p>
-</blockquote>
-<p>Where:</p>
+                <h1 id="vm-patching-in-devtest-labs">VM Patching in DevTest Labs<a class="headerlink" href="#vm-patching-in-devtest-labs" title="Permanent link">&para;</a></h1>
+<p>We regularly help our customers to use Azure's <a href="https://docs.microsoft.com/en-us/azure/lab-services/"><strong>DevTest Labs</strong></a>  in combination with <a href="https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/"><strong>Data Science Virtual Machines</strong></a> to safely and securely spin up the required resources for rapid-fire projects without slowing down the pace of innovation and time-to-market for new ideas.</p>
+<p>One aspect of providing a secure environment is ensure that machines are regularly patched and operating systems and software kept up to date to limit the risk of vulnerabity to expliots and fix bugs.</p>
+<p>At the time of writing, I'm part of a small team supporting a variety of teams in various parts of the business who need access to such environments at short notice and we don't have the time to be patching virtual machines one-by-one on a routine basis. As a result we need to use as much automation as we can to do this for us.</p>
+<p>This article is about how we used Azure's Update Management solution to keep Virtual Mchines in DevTest Labs up to date with very little manual intervention from the administrators (<em>that's us!</em>).</p>
+<h2 id="about-devtest-labs">About DevTest Labs<a class="headerlink" href="#about-devtest-labs" title="Permanent link">&para;</a></h2>
+<p><strong>DevTest Labs (DTL)</strong> enable project team members to self-manage virtual machines (VMs) without waiting for approvals, or for an administrator to create and configure it for them.</p>
+<p><img alt="DevTest Labs" src="../media/dtl.png" /></p>
+<p>This allows us to offer pre-configured base machines (both Windows and Linux) which have all the necessary tools and software built-in which users can then spin up in just a few minutes.</p>
+<h3 id="secure-environment">Secure Environment<a class="headerlink" href="#secure-environment" title="Permanent link">&para;</a></h3>
+<p>VMs are made avaiable in a DTL and depending on requirements we typically be protect them as follows:</p>
 <ul>
-<li>domain.cer is the client certificate (i.e. without the Certification Authority (CA) chain )</li>
-<li>domain.rsa is an un-encrypted version of the private key</li>
-<li>CAbundle.txt contains the CA certificates to append to create the CA chain</li>
+<li>
+<p>Placing the VMs into a subnet within a private Virtual Network (VNET) so that a perimeter firewall device can be used to filter and log internet and intra-network access.</p>
+</li>
+<li>
+<p>Applying a User Defined Route (UDR) to ensure that all traffic from the subnet traverses the firewall.</p>
+</li>
+<li>
+<p>The DTL works on our behalf to ensure that each of the virtual machines and its associated resources are deployed into a separate resource group RBAC is used to limit who can change settings or gain access to the virtual machine. The user who has claimed the machine has just enough rights to use it but not modify anything else.</p>
+</li>
+<li>
+<p>Using <a href="https://docs.microsoft.com/en-us/azure/lab-services/add-artifact-vm">DevTest Lab Artifacts</a> to add additional components and configure the operating system and machine policy.</p>
+</li>
+<li>
+<p>Using Azure's <strong>Update Management</strong> solution (see below) to keep operating systems patched. <em>This topic is the main focus of this article.</em></p>
+</li>
 </ul>
-<p><strong>domain.cer</strong> looks like this</p>
-<p><img alt="Image" src="../media/domain.cer.png?raw=true" /></p>
-<p>As you can see if contains just a single certificate</p>
-<p><strong>domain.rsa</strong> looks like this</p>
-<p><img alt="Image" src="../media/domain.rsa.png?raw=true" /></p>
-<h3 id="how-to-get-the-client-certificate-without-the-full-ca-chain">How to get the client certificate (without the full CA chain)<a class="headerlink" href="#how-to-get-the-client-certificate-without-the-full-ca-chain" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>openssl pkcs12 -in domain.pfx -clcerts -nokeys -out domain.cer</p>
-</blockquote>
-<hr />
-<p>Some of the steps in this article are based on <a href="https://www.markbrilman.nl/2011/08/howto-convert-a-pfx-to-a-seperate-key-crt-file/">How to convert a PFX to a seperate .key/.crt file</a> - by Mark Brilman</p>
-<p>I also referred to the <a href="https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html">OpenSSL PKCS12 man pages</a></p>
-<p>And to <a href="https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs#convert-certificate-formats">OpenSSL Essentials: Working with SSL Certificates, Private Keys and CSRs</a></p>
-<h2 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">&para;</a></h2>
-<p>While following an MS Learn module I found this article on using Azure Key Vault to do much of the above:
-<a href="https://docs.microsoft.com/en-gb/learn/modules/configure-and-manage-azure-key-vault/5-manage-certificates">Manage certificates</a></p>
-<blockquote>
-<p>"...you can connect your Key Vault with a trusted certificate issuer (referred to as an integrated CA) and create the certificate directly in Azure Key Vault. You can then request to create a certificate and the Key Vault will interact directly with the CA to fulfill the request"</p>
-</blockquote>
-<p>Alternatively, you can also just use Key Vault to create self-signed certificates for testing, or to create an X.509 certificate signing request (CSR) to pass on to the certificate authority (CA) to process and then later request Key Vault to merge the resulting X.509 certificate with the key pair held in Key Vault.</p>
+<h2 id="tools-for-data-science">Tools for Data Science<a class="headerlink" href="#tools-for-data-science" title="Permanent link">&para;</a></h2>
+<p>Our customers have more and more data and they are asking more a more comlex questions of that data. Developers and Data Scientists are engaged to find the answers and they need to quickly spin up an environment with all the right tools.</p>
+<p><img alt="Data Science Virtual Machine" src="../media/dsvm.png" /></p>
+<p><a href="https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/">Data Science Virtual Machines</a> (DSVM) are a customized VM image which we typically make available for end-user selection in our DTL environments. These are VMs built specifically for doing data science. They come pre-installed and pre-configured with many popular data science tools which helps to jump-start data engineering and advanced analytics.</p>
+<p>The combination of DSVMs and a DevTest Lab Environment is a powerful enabler for people to get started on the job quickly without worrying about precious data assets falling into the wrong hands.</p>
+<h2 id="azure-automation-update-management">Azure Automation - Update Management<a class="headerlink" href="#azure-automation-update-management" title="Permanent link">&para;</a></h2>
+<p>We use the <a href="https://docs.microsoft.com/en-us/azure/automation/automation-update-management">Update Management</a> solution in <a href="https://docs.microsoft.com/en-us/azure/automation/">Azure Automation</a> to manage operating system updates for virtual machines in our DevTest Labs in Azure.</p>
+<p>Update Management scans and displays the status of available updates and it manages the process of installing required updates on each machine on a configurable schedule.</p>
+<p>Here's what we needed:</p>
+<ul>
+<li>
+<p>Update Management can only patch a machine whilst it's running</p>
+</li>
+<li>
+<p>Machines are shut down automatically by the DevTest Labs environment out of working hours to save costs and therefore machines are only running during the daytime.</p>
+</li>
+<li>
+<p>We want to limit how much we interrupt a user while they're using their VM so any system maintenance needs to happen out-of-hours.</p>
+</li>
+</ul>
+<p>As such we needed to find a way to ensure that virtual machines were running when the patching process starts but are shut down again afterwards to limit costs.</p>
+<h3 id="using-pre-and-post-scripts-to-prepare-machines-for-patching">Using pre and post-scripts to prepare machines for patching<a class="headerlink" href="#using-pre-and-post-scripts-to-prepare-machines-for-patching" title="Permanent link">&para;</a></h3>
+<p>Pre-scripts and post-scripts let you run PowerShell runbooks in your Azure Automation account before (pre-task) and after (post-task) a scheduled update management deployment.</p>
+<p>The documentation <a href="https://docs.microsoft.com/en-us/azure/automation/pre-post-scripts">'Manage pre and post-scripts'</a> provided us with most of what we needed to know. At time of writing the document does a good job of explaining the general concept of pre and post-scripts using TurnOnVMS and TurnOffVMs as examples of what you can do with these kinds of runbooks. In this article I'll fill in a few gaps in the end-to-end steps we needed to take to gets all this working for us.</p>
+<p><a href="https://github.com/zjalexander/UpdateManagement">https://github.com/zjalexander/UpdateManagement</a></p>
+<ul>
+<li>
+<p><a href="https://www.powershellgallery.com/packages/UpdateManagement-TurnOnVms">UpdateManagement-TurnOnVms</a> - ensures all Azure VMs in the Update Deployment are running so they recieve updates. It stores the names of machines that were started in an Automation variable so only those machines are turned back off (by the accompanying <em>UpdateManagement-TurnOffVms</em> script) when the deployment is finished.</p>
+</li>
+<li>
+<p><a href="https://www.powershellgallery.com/packages/UpdateManagement-TurnOffVms">UpdateManagement-TurnOffVms</a> - ensures that all Azure VMs in the Update Deployment are turned off after they recieve updates by reads the names of the machines from the Automation variable.</p>
+</li>
+</ul>
+<p>Source code for the above modules <a href="https://github.com/zjalexander/UpdateManagement">can be found from <strong>zjalexander</strong> in GitHub</a>.</p>
+<p>The ReadMe document in GitHub explains that the scripts have the following requirements, which I'll explain in a bit more detail here.</p>
+<ul>
+<li>
+<p>An <strong>Automation Account</strong> and a linked <strong>Log Analytics Workspace</strong> with the <strong>Update Management</strong> solution enabled.</p>
+</li>
+<li>
+<p>A <strong>RunAs account</strong> for interacting with the Azure services used by these scripts.</p>
+</li>
+<li>
+<p>The <strong>ThreadJob</strong> module imported into your Automation Account</p>
+</li>
+<li>
+<p>The <strong>latest versions of the AzureRM</strong> modules.</p>
+</li>
+</ul>
+<p>Follow this document to <a href="https://docs.microsoft.com/en-gb/azure/automation/manage-runas-account#creating-a-run-as-account-in-azure-portal">Create a Run As account</a> either in Azure portal or or with PowerShell. Be aware that you need sufficient privileges (at least Application administrator in Azure Active Directory and an Owner in a subscription) to complete this task.</p>
+<p>In order to <a href="https://docs.microsoft.com/en-gb/azure/automation/automation-update-azure-modules">Update Azure PowerShell modules in Azure Automation</a> need to download the <a href="https://github.com/Microsoft/AzureAutomation-Account-Modules-Update">Update Azure modules runbook</a> from GitHub and import and publish it into the list of Runbooks your Automation Account.</p>
+<p>Use the Runbook Gallery to import the following Scripts as follows:</p>
+<ul>
+<li>In the Azure portal, open your Automation account</li>
+<li>Under Process Automation, click on Runbooks gallery</li>
+<li>Select Source: Script Center</li>
+<li>Enter 'UpdateManagement' into the search box</li>
+<li>select each module and click 'Import':<ul>
+<li>Update Management - Turn On VMs</li>
+<li>Update Management - Turn Off VMs</li>
+</ul>
+</li>
+</ul>
+<p>The UpdateManagement modules both depend on the <a href="https://www.powershellgallery.com/packages/ThreadJob">ThreadJob module</a>. This module extends the existing PowerShell BackgroundJob to include a new thread-based job to provide faster operation with less overhead. To install it </p>
+<ul>
+<li>go to the URL in a browser <a href="https://www.powershellgallery.com/packages/ThreadJob">https://www.powershellgallery.com/packages/ThreadJob</a></li>
+<li>click on the 'Azure Automation' tab</li>
+<li>click on the button 'Deploy to Azure Automation'</li>
+<li>pick the Subscriptionname, Resource Group and Location and select the Automation Account you want to install the module into.</li>
+</ul>
                 
                   
                 
@@ -710,7 +700,7 @@
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-02-10
+                        Last update: 2020-03-25
                       
                     </small>
                   </div>
@@ -724,9 +714,9 @@
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = "https://rohancragg.co.uk/aks/create-tls-secret/";
+      this.page.url = "https://rohancragg.co.uk/compute/patching-devtestlabs/";
       this.page.identifier =
-        "/aks/create-tls-secret/";
+        "/compute/patching-devtestlabs/";
     };
     (function() {
       var d = document, s = d.createElement("script");
@@ -748,7 +738,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../domains/" title="Clusters and Domains" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../devops/azdo-self-hosted-build-agents/" title="Azure DevOps - Self-Hosted Build Agents" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -757,11 +747,25 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Clusters and Domains
+                Azure DevOps - Self-Hosted Build Agents
               </span>
             </div>
           </a>
         
+        
+          <a href="../../aks/domains/" title="Clusters and Domains" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Clusters and Domains
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
