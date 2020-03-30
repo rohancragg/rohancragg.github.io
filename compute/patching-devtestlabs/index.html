@@ -644,8 +644,7 @@
 <p>As such we needed to find a way to ensure that virtual machines were running when the patching process starts but are shut down again afterwards to limit costs.</p>
 <h3 id="using-pre-and-post-scripts-to-prepare-machines-for-patching">Using pre and post-scripts to prepare machines for patching<a class="headerlink" href="#using-pre-and-post-scripts-to-prepare-machines-for-patching" title="Permanent link">&para;</a></h3>
 <p>Pre-scripts and post-scripts let you run PowerShell runbooks in your Azure Automation account before (pre-task) and after (post-task) a scheduled update management deployment.</p>
-<p>The documentation <a href="https://docs.microsoft.com/en-us/azure/automation/pre-post-scripts">'Manage pre and post-scripts'</a> provided us with most of what we needed to know. At time of writing the document does a good job of explaining the general concept of pre and post-scripts using TurnOnVMS and TurnOffVMs as examples of what you can do with these kinds of runbooks. In this article I'll fill in a few gaps in the end-to-end steps we needed to take to gets all this working for us.</p>
-<p><a href="https://github.com/zjalexander/UpdateManagement">https://github.com/zjalexander/UpdateManagement</a></p>
+<p>The documentation <a href="https://docs.microsoft.com/en-us/azure/automation/pre-post-scripts">'Manage pre and post-scripts'</a> provided us with most of what we needed to know. At time of writing the document does a good job of explaining the general concept of pre and post-scripts using script gallery samples such as <code>UpdateManagement-TurnOnVMS</code> and <code>UpdateManagement-TurnOffVMs</code> as examples of what you can do with these kinds of runbooks. In this article I'll fill in a few gaps in the end-to-end steps we needed to take to get these start/stop scripts working for us as a routine patching solution.</p>
 <ul>
 <li>
 <p><a href="https://www.powershellgallery.com/packages/UpdateManagement-TurnOnVms">UpdateManagement-TurnOnVms</a> - ensures all Azure VMs in the Update Deployment are running so they recieve updates. It stores the names of machines that were started in an Automation variable so only those machines are turned back off (by the accompanying <em>UpdateManagement-TurnOffVms</em> script) when the deployment is finished.</p>
@@ -658,39 +657,59 @@
 <p>The ReadMe document in GitHub explains that the scripts have the following requirements, which I'll explain in a bit more detail here.</p>
 <ul>
 <li>
-<p>An <strong>Automation Account</strong> and a linked <strong>Log Analytics Workspace</strong> with the <strong>Update Management</strong> solution enabled.</p>
+<p>Follow these links to create an <a href="https://docs.microsoft.com/en-us/azure/automation/automation-quickstart-create-account"><strong>Automation Account</strong></a> and a linked <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-platform-logs"><strong>Log Analytics Workspace</strong></a> with the <a href="https://docs.microsoft.com/en-us/azure/automation/automation-update-management"><strong>Update Management</strong></a> solution enabled.</p>
 </li>
 <li>
 <p>A <strong>RunAs account</strong> for interacting with the Azure services used by these scripts.</p>
+<ul>
+<li>Follow this document to <a href="https://docs.microsoft.com/en-gb/azure/automation/manage-runas-account#creating-a-run-as-account-in-azure-portal">Create a Run As account</a> either in Azure portal or or with PowerShell. Be aware that you need sufficient privileges (at least Application administrator in Azure Active Directory and an Owner in a subscription) to complete this task.</li>
+</ul>
 </li>
 <li>
-<p>The <strong>ThreadJob</strong> module imported into your Automation Account</p>
-</li>
-<li>
-<p>The <strong>latest versions of the AzureRM</strong> modules.</p>
-</li>
-</ul>
-<p>Follow this document to <a href="https://docs.microsoft.com/en-gb/azure/automation/manage-runas-account#creating-a-run-as-account-in-azure-portal">Create a Run As account</a> either in Azure portal or or with PowerShell. Be aware that you need sufficient privileges (at least Application administrator in Azure Active Directory and an Owner in a subscription) to complete this task.</p>
-<p>In order to <a href="https://docs.microsoft.com/en-gb/azure/automation/automation-update-azure-modules">Update Azure PowerShell modules in Azure Automation</a> need to download the <a href="https://github.com/Microsoft/AzureAutomation-Account-Modules-Update">Update Azure modules runbook</a> from GitHub and import and publish it into the list of Runbooks your Automation Account.</p>
-<p>Use the Runbook Gallery to import the following Scripts as follows:</p>
+<p>The <strong>ThreadJob</strong> module imported into your Automation Account.</p>
 <ul>
-<li>In the Azure portal, open your Automation account</li>
-<li>Under Process Automation, click on Runbooks gallery</li>
-<li>Select Source: Script Center</li>
-<li>Enter 'UpdateManagement' into the search box</li>
-<li>select each module and click 'Import':<ul>
-<li>Update Management - Turn On VMs</li>
-<li>Update Management - Turn Off VMs</li>
-</ul>
-</li>
-</ul>
-<p>The UpdateManagement modules both depend on the <a href="https://www.powershellgallery.com/packages/ThreadJob">ThreadJob module</a>. This module extends the existing PowerShell BackgroundJob to include a new thread-based job to provide faster operation with less overhead. To install it </p>
-<ul>
+<li>The UpdateManagement modules both depend on the <a href="https://www.powershellgallery.com/packages/ThreadJob">ThreadJob module</a>. This module extends the existing PowerShell BackgroundJob to include a new thread-based job to provide faster operation with less overhead. To install it<ul>
 <li>go to the URL in a browser <a href="https://www.powershellgallery.com/packages/ThreadJob">https://www.powershellgallery.com/packages/ThreadJob</a></li>
 <li>click on the 'Azure Automation' tab</li>
 <li>click on the button 'Deploy to Azure Automation'</li>
-<li>pick the Subscriptionname, Resource Group and Location and select the Automation Account you want to install the module into.</li>
+<li>pick the Subscription name, Resource Group and Location and select the Automation Account you want to install the module into.</li>
 </ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The <strong>latest versions of the AzureRM</strong> modules.</p>
+<ul>
+<li>
+<p>In order to <a href="https://docs.microsoft.com/en-gb/azure/automation/automation-update-azure-modules">Update Azure PowerShell modules in Azure Automation</a> need to download the <a href="https://github.com/Microsoft/AzureAutomation-Account-Modules-Update">Update Azure modules runbook</a> from GitHub and import and publish it into the list of Runbooks your Automation Account.</p>
+<p><img alt="Import Runbook" src="../media/import-runbook.png" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Top Tip</p>
+<p>Rather than download the runbook powershell script from GitHub, you can directly paste the 'raw' file URL from GitHub into the 'Runbook file' textbox i.e. '<a href="https://raw.githubusercontent.com/microsoft/AzureAutomation-Account-Modules-Update/master/Update-AutomationAzureModulesForAccount.ps1">https://raw.githubusercontent.com/microsoft/AzureAutomation-Account-Modules-Update/master/Update-AutomationAzureModulesForAccount.ps1</a>'</p>
+</div>
+<p>Now you can use the <strong>Runbook Gallery</strong> to import the start-stop scripts as follows:</p>
+<ul>
+<li>In the Azure portal, open your Automation account</li>
+<li>Under Process Automation, click on <strong>Runbooks Gallery</strong></li>
+<li>Select <em>'Source: Script Center'</em></li>
+<li>Enter 'UpdateManagement' into the search box</li>
+<li>select each module and click <strong>'Import'</strong>:<ul>
+<li><em>Update Management - Turn On VMs</em></li>
+<li><em>Update Management - Turn Off VMs</em></li>
+</ul>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>After you import runbooks you need to publish them before they can be used. To do this, find the runbook in <strong>Runbooks</strong> pane and click <strong>Edit</strong> and <strong>Publish</strong>.</p>
+</div>
+<p>Visit the Docs page for details on <a href="https://docs.microsoft.com/en-us/azure/automation/pre-post-scripts#using-a-pre-script-or-post-script">how to use these pre and post-scripts in your update deployment</a>. </p>
+<p>Here's what one of my update deployment runs looks like with the script status showing completed:</p>
+<p><img alt="Completed update deployment" src="../media/update-deployment-run.png" /></p>
                 
                   
                 
@@ -700,7 +719,7 @@
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-03-25
+                        Last update: 2020-03-30
                       
                     </small>
                   </div>
