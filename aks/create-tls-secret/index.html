@@ -11,7 +11,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
-        <meta name="description" content="@rohancragg's Personal Tech Docs">
+        <meta name="description" content="How to Create a TLS Secret in AKS">
       
       
         <link rel="canonical" href="https://rohancragg.co.uk/aks/create-tls-secret/">
@@ -41,15 +41,16 @@
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
-    <meta property="og:title" content="" />
+    <meta property="og:title" content="Create a TLS Secret in AKS" />
     
         <meta property="og:type" content="website" />
     
     <meta property="og:url" content="https://rohancragg.co.uk/aks/create-tls-secret/" />
     
+        <meta property="og:image" content="https://rohancragg.co.uk/aks/media/cert-path.png" />
     
     
-        <meta property="og:description" content="@rohancragg's Personal Tech Docs">
+        <meta property="og:description" content="How to Create a TLS Secret in AKS">
     
     <meta property="og:locale" content="en-GB" />
     <meta property="fb:app_id" content="245640346829400" />
@@ -62,7 +63,7 @@
 
     
       
-        <title>Create a TLS Secret - What I learned today (@rohancragg)</title>
+        <title>How to Create a TLS Secret</title>
       
     
     
@@ -113,7 +114,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#how-to-create-a-tls-secret" tabindex="0" class="md-skip">
+      <a href="#what-are-we-trying-to-achieve" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -139,7 +140,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Create a TLS Secret
+                How to Create a TLS Secret
               
             </span>
           
@@ -202,6 +203,17 @@
     
     <div class="md-container">
       
+        
+          
+
+
+  
+
+<div class="md-hero md-hero--expand" data-md-component="hero">
+  <div class="md-hero__inner md-grid">
+    TLS Secret management in AKS
+  </div>
+</div>
         
       
       
@@ -420,8 +432,6 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Create a TLS Secret
@@ -434,8 +444,6 @@
       
 <nav class="md-nav md-nav--secondary">
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
@@ -539,8 +547,6 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -632,8 +638,9 @@
                   <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/aks/create-tls-secret.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="how-to-create-a-tls-secret">How to Create a TLS Secret<a class="headerlink" href="#how-to-create-a-tls-secret" title="Permanent link">&para;</a></h1>
-<p>I followed the command-line method (the first method) explained in this article <a href="https://shocksolution.com/2018/12/14/creating-kubernetes-secrets-using-tls-ssl-as-an-example/">Creating Kubernetes Secrets Using TLS/SSL as an Example</a> - i.e. rather than using the second (YAML file) method.</p>
+                  <h1>Create a TLS Secret</h1>
+                
+                <p>I followed the command-line method (the first method) explained in this article <a href="https://shocksolution.com/2018/12/14/creating-kubernetes-secrets-using-tls-ssl-as-an-example/">Creating Kubernetes Secrets Using TLS/SSL as an Example</a> - i.e. rather than using the second (YAML file) method.</p>
 <p>In order to do this I needed two files in the correct format.</p>
 <p>There are multiple formats that certificate and associated key files can be in (they can even be combined into a single file). In order to create a Kubernetes TLS secret I needed to ascertain the right ones to use.</p>
 <p>I was provided with a <code>.pks</code> file and needed to work out how to generate the correct artifacts from it. All I knew from the above article was that I needed a <code>.crt</code> and a <code>.key</code> file and at first I wasn't sure what these were.</p>
@@ -730,7 +737,7 @@
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: 2020-02-10
+                        Last update: 2020-03-31
                       
                     </small>
                   </div>
