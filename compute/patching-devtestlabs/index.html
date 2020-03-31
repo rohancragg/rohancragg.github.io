@@ -8,12 +8,19 @@
     
     <meta property="og:title" content="Patching in DevTest Labs"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="../.."/>
-    <meta property="og:image" content="compute/patching-devtestlabs/../media/dtl.png"/>
+    <meta property="og:url" content="/compute/patching-devtestlabs/"/>
+
+    <meta property="og:image" content="/compute/media/media/dtl.png"/>
+
     <meta property="og:locale" content="en-GB"/>
 
+    <meta property="base_url" content="../.." />
     <meta property="site_url" content="" />
     <meta property="page.url" content="compute/patching-devtestlabs/" />
+    <meta property="page.abs_url" content="/compute/patching-devtestlabs/" />
+    <meta property="page.canonical_url" content="https://rohancragg.co.uk/compute/patching-devtestlabs/" />
+    <meta property="page.parent" content="Section(title='DevOps')" />
+    <meta property="link" content="" />
 
     
       
@@ -68,7 +75,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#vm-patching-in-devtest-labs" tabindex="0" class="md-skip">
+      <a href="#about-devtest-labs" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -338,8 +345,6 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         VM Patching in DevTest Labs
@@ -352,8 +357,6 @@
       
 <nav class="md-nav md-nav--secondary">
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
@@ -490,8 +493,6 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -568,8 +569,9 @@
                   <a href="https://github.com/rohancragg/blog-notes/edit/master/docs/compute/patching-devtestlabs.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="vm-patching-in-devtest-labs">VM Patching in DevTest Labs<a class="headerlink" href="#vm-patching-in-devtest-labs" title="Permanent link">&para;</a></h1>
-<p>We regularly help our customers to use Azure's <a href="https://docs.microsoft.com/en-us/azure/lab-services/"><strong>DevTest Labs</strong></a>  in combination with <a href="https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/"><strong>Data Science Virtual Machines</strong></a> to safely and securely spin up the required resources for rapid-fire projects without slowing down the pace of innovation and time-to-market for new ideas.</p>
+                  <h1>VM Patching in DevTest Labs</h1>
+                
+                <p>We regularly help our customers to use Azure's <a href="https://docs.microsoft.com/en-us/azure/lab-services/"><strong>DevTest Labs</strong></a>  in combination with <a href="https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/"><strong>Data Science Virtual Machines</strong></a> to safely and securely spin up the required resources for rapid-fire projects without slowing down the pace of innovation and time-to-market for new ideas.</p>
 <p>One aspect of providing a secure environment is ensure that machines are regularly patched and operating systems and software kept up to date to limit the risk of vulnerabity to expliots and fix bugs.</p>
 <p>At the time of writing, I'm part of a small team supporting a variety of teams in various parts of the business who need access to such environments at short notice and we don't have the time to be patching virtual machines one-by-one on a routine basis. As a result we need to use as much automation as we can to do this for us.</p>
 <p>This article is about how we used Azure's Update Management solution to keep Virtual Mchines in DevTest Labs up to date with very little manual intervention from the administrators (<em>that's us!</em>).</p>
