@@ -35,14 +35,14 @@ fatal: unable to auto-detect email address
 <span class=n>To</span> <span class=n>push</span> <span class=n>the</span> <span class=n>current</span> <span class=n>branch</span> <span class=n>and</span> <span class=nb>set </span><span class=n>the</span> <span class=n>remote</span> <span class=n>as</span> <span class=n>upstream</span><span class=p>,</span> <span class=n>use</span>
 
     <span class=n>git</span> <span class=n>push</span> <span class=p>-</span><span class=n>-set-upstream</span> <span class=n>origin</span> <span class=n>feature</span><span class=p>/</span><span class=n>TryingSomething</span>
-</code></pre></div> <p>Do what is says in the message!</p> <div class=highlight><pre><span></span><code><span class=n>git</span> <span class=n>push</span> <span class=p>-</span><span class=n>-set-upstream</span> <span class=n>origin</span> <span class=n>feature</span><span class=p>/</span><span class=n>TryingSomething</span>
+</code></pre></div> <p>Do what is says in the message!</p> <p><div class=highlight><pre><span></span><code><span class=n>git</span> <span class=n>push</span> <span class=p>-</span><span class=n>-set-upstream</span> <span class=n>origin</span> <span class=n>feature</span><span class=p>/</span><span class=n>TryingSomething</span>
 <span class=c># create and merge a Pull Request</span>
 <span class=c># now, you no longer need the feature branch as it&#39;s been deleted on the remote copy</span>
 <span class=n>git</span> <span class=n>checkout</span> <span class=n>main</span>
 <span class=n>git</span> <span class=n>pull</span>
 <span class=c># delete the local copy</span>
 <span class=n>git</span> <span class=n>branch</span> <span class=n>-D</span> <span class=n>feature</span><span class=p>/</span><span class=n>TryingSomething</span>
-</code></pre></div> <div class=highlight><pre><span></span><code><span class=c># make changes</span>
+</code></pre></div> The full set of commands that avoids any errors due to having a stale copy of the repository (this can happen if other people are making changes) is as follows:</p> <div class=highlight><pre><span></span><code><span class=c># make changes</span>
 <span class=n>git</span> <span class=n>add</span> <span class=p>.</span>
 <span class=n>git</span> <span class=n>commit</span> <span class=n>-m</span> <span class=s1>&#39;my commit message&#39;</span>
 <span class=c># get any recent changes in the trunk (main branch)</span>
@@ -61,7 +61,7 @@ fatal: unable to auto-detect email address
 <span class=c># get any recent changes in the trunk (main branch) - there will be new commits due to the Pull Request merge activity</span>
 <span class=n>git</span> <span class=n>rebase</span> <span class=n>origin</span><span class=p>/</span><span class=n>main</span>
 <span class=n>git</span> <span class=n>push</span> <span class=p>-</span><span class=n>-tags</span>
-</code></pre></div> <h3 id=going-even-faster>Going even faster!<a class=headerlink href=#going-even-faster title="Permanent link">&para;</a></h3> <p>A quicker way to run through the steps from 'Create a branch to work on' above is to use a tool called <a href=https://www.git-town.com/ ><code>Git Town</code></a></p> <div class=highlight><pre><span></span><code><span class=c># installs the tool</span>
+</code></pre></div> <h3 id=going-even-faster>Going even faster!<a class=headerlink href=#going-even-faster title="Permanent link">&para;</a></h3> <p>Clearly this is alot of commands to have to exectue each time so there's a great tool that makes this much easier!</p> <p>A quicker way to run through the steps from 'Create a branch to work on' above is to use a tool called <a href=https://www.git-town.com/ ><code>Git Town</code></a></p> <div class=highlight><pre><span></span><code><span class=c># installs the tool</span>
 <span class=n>scoop</span> <span class=n>install</span> <span class=n>git-town</span>
 <span class=c># make a feature branch to work on</span>
 <span class=n>git</span> <span class=n>town</span> <span class=n>hack</span> <span class=n>feature</span><span class=p>/</span><span class=n>TrySomethingElse</span>
