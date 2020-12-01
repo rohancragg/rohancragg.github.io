@@ -52,7 +52,7 @@ fatal: unable to auto-detect email address
 
 <span class=c># makes a feature branch to work on and drops you into it!</span>
 <span class=n>git</span> <span class=n>town</span> <span class=n>hack</span> <span class=n>feature</span><span class=p>/</span><span class=n>TrySomethingElse</span>
-</code></pre></div> <p>Do some work...</p> <div class=highlight><pre><span></span><code>touch newfile.txt
+</code></pre></div> <p>Do some work...</p> <div class=highlight><pre><span></span><code><span class=nb>Add-Content</span> <span class=n>newfile</span><span class=p>.</span><span class=n>txt</span> <span class=s1>&#39;&#39;</span>
 </code></pre></div> <p>Add and commit the changes:</p> <div class=highlight><pre><span></span><code><span class=n>git</span> <span class=n>add</span> <span class=p>.</span>
 <span class=n>git</span> <span class=n>commit</span> <span class=n>-m</span> <span class=s1>&#39;Your commit message&#39;</span>
 </code></pre></div> <p>This command then does all the hard work of getting your <code>main</code> up to date and merging your local branch and then pushing your work up to the remote (all in one line!)</p> <div class=highlight><pre><span></span><code><span class=n>git</span> <span class=n>town</span> <span class=n>sync</span>
